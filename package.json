@@ -5,6 +5,9 @@
   "scripts": {
     "preview": "netlify dev"
   },
+  "dependencies": {
+    "razorpay": "^2.9.2"
+  },
   "keywords": ["foundation", "donations", "healthcare", "netlify"],
   "author": "Okti Foundation",
   "license": "MIT"

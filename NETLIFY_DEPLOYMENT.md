@@ -26,7 +26,7 @@ This guide will help you deploy your Okti Foundation website to Netlify with ful
    - Select your repository
 
 2. **Configure Build Settings**:
-   - Build command: (leave empty - no build needed)
+   - Build command: `npm install`
    - Publish directory: `.` (root directory)
    - Node version: `18`
 

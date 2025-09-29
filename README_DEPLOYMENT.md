@@ -16,8 +16,8 @@ NODE_ENV=production
 
 ## Build Command
 
-```
-(No build command needed)
+```bash
+npm install
 ```
 
 ## Publish Directory
@@ -41,7 +41,7 @@ NODE_ENV=production
 ## Deployment Steps
 
 1. Connect your Git repository to Netlify
-2. Set build command: (leave empty)
+2. Set build command: `npm install`
 3. Set publish directory: `.` (root)
 4. Add environment variables
 5. Deploy!

@@ -1,5 +1,6 @@
 [build]
-  # No build command needed - serving static files directly
+  # Install dependencies for Netlify Functions
+  command = "npm install"
   # Directory to publish
   publish = "."
   # Functions directory
