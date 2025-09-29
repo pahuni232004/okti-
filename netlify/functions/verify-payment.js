@@ -18,6 +18,19 @@ exports.handler = async (event, context) => {
   }
 
   try {
+    // Check if environment variables are set
+    if (!process.env.RAZORPAY_KEY_SECRET) {
+      console.error('Missing Razorpay key secret');
+      return {
+        statusCode: 500,
+        headers,
+        body: JSON.stringify({ 
+          error: 'Payment service configuration error',
+          message: 'Razorpay credentials not configured' 
+        })
+      };
+    }
+
     // Parse request body
     const { razorpay_order_id, razorpay_payment_id, razorpay_signature } = JSON.parse(event.body);
     

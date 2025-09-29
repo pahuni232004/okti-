@@ -155,17 +155,17 @@
             </div>
             <div class="founders-content">
                 <div class="main-founders">
-                    <img src="Images/Founders.png" alt="Dr. George and Shobha Varghese" class="founders-img">
+                    <img src="Images/Founders.png" alt="Dr. George and Sheila Varghese" class="founders-img">
                     <div class="founders-info">
-                        <h3 class="founders-names">Dr. George & Shobha Varghese</h3>
-                        <p class="founders-title">Co-Founders</p>
+                        <h3 class="founders-names">Dr. George & Sheila Varghese</h3>
+                        <p class="founders-title">Mentors</p>
                     </div>
                 </div>
                 
                 <div class="other-founders">
                     <div class="founder-card">
-                        <img src="Images/Secratery.jpg" alt="Dr. Sanai Battha" class="founder-img">
-                        <h4 class="founder-name">Dr. Sanai Battha</h4>
+                        <img src="Images/Secratery.jpg" alt="Dr. Sonal Bathla" class="founder-img">
+                        <h4 class="founder-name">Dr. Sonal Bathla</h4>
                         <p class="founder-position">Secretary General</p>
                     </div>
                     
@@ -227,7 +227,7 @@
                                 <i class="fas fa-female"></i>
                             </div>
                             <div class="program-details">
-                                <h3 class="program-title">Project Padcare</h3>
+                                <h3 class="program-title">Project Prolapse</h3>
                                 <p class="program-description">Comprehensive menstrual health education and hygiene management programs for rural women.</p>
                             </div>
                         </div>
@@ -579,10 +579,24 @@
             const body = document.body;
             
             if (burger && nav) {
-                burger.addEventListener('click', function() {
-                    nav.classList.toggle('open');
-                    burger.classList.toggle('active');
-                    body.classList.toggle('nav-open');
+                // Prevent default burger button behavior
+                burger.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    
+                    const isOpen = nav.classList.contains('open');
+                    
+                    if (isOpen) {
+                        // Close navigation
+                        nav.classList.remove('open');
+                        burger.classList.remove('active');
+                        body.classList.remove('nav-open');
+                    } else {
+                        // Open navigation
+                        nav.classList.add('open');
+                        burger.classList.add('active');
+                        body.classList.add('nav-open');
+                    }
                 });
                 
                 // Close nav when clicking on links
@@ -595,14 +609,31 @@
                     });
                 });
                 
-                // Close nav when clicking outside
+                // Close nav when clicking outside (but not on burger)
                 document.addEventListener('click', function(e) {
-                    if (!nav.contains(e.target) && !burger.contains(e.target)) {
-                        nav.classList.remove('open');
-                        burger.classList.remove('active');
-                        body.classList.remove('nav-open');
+                    if (nav.classList.contains('open')) {
+                        if (!nav.contains(e.target) && !burger.contains(e.target)) {
+                            nav.classList.remove('open');
+                            burger.classList.remove('active');
+                            body.classList.remove('nav-open');
+                        }
                     }
                 });
+                
+                // Prevent body scroll when nav is open
+                const originalStyle = window.getComputedStyle(body).overflow;
+                const observer = new MutationObserver(function(mutations) {
+                    mutations.forEach(function(mutation) {
+                        if (mutation.type === 'attributes' && mutation.attributeName === 'class') {
+                            if (body.classList.contains('nav-open')) {
+                                body.style.overflow = 'hidden';
+                            } else {
+                                body.style.overflow = originalStyle;
+                            }
+                        }
+                    });
+                });
+                observer.observe(body, { attributes: true, attributeFilter: ['class'] });
             }
         });
     </script>

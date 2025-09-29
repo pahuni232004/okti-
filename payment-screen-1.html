@@ -484,13 +484,31 @@
         
         // Process payment with Razorpay
         async function processPayment() {
+            const payButton = document.querySelector('.pay-btn');
+            const originalText = payButton.textContent;
+            
             try {
+                // Show loading state
+                payButton.disabled = true;
+                payButton.textContent = 'Processing...';
+                
                 // Get Razorpay key from backend
-                const keyResponse = await fetch('/api/razorpay-key');
-                const { key } = await keyResponse.json();
+                const keyResponse = await fetch('/.netlify/functions/razorpay-key');
+                
+                if (!keyResponse.ok) {
+                    throw new Error(`Failed to get Razorpay key: ${keyResponse.status}`);
+                }
+                
+                const keyData = await keyResponse.json();
+                
+                if (keyData.error) {
+                    throw new Error(keyData.message || 'Payment service not configured');
+                }
+                
+                const { key } = keyData;
                 
                 // Create order on backend
-                const orderResponse = await fetch('/api/create-order', {
+                const orderResponse = await fetch('/.netlify/functions/create-order', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -507,6 +525,10 @@
                         }
                     })
                 });
+                
+                if (!orderResponse.ok) {
+                    throw new Error(`Failed to create order: ${orderResponse.status}`);
+                }
                 
                 const orderData = await orderResponse.json();
                 
@@ -525,7 +547,7 @@
                     handler: async function(response) {
                         try {
                             // Verify payment on backend
-                            const verifyResponse = await fetch('/api/verify-payment', {
+                            const verifyResponse = await fetch('/.netlify/functions/verify-payment', {
                                 method: 'POST',
                                 headers: {
                                     'Content-Type': 'application/json',
@@ -536,6 +558,10 @@
                                     razorpay_signature: response.razorpay_signature
                                 })
                             });
+                            
+                            if (!verifyResponse.ok) {
+                                throw new Error(`Payment verification failed: ${verifyResponse.status}`);
+                            }
                             
                             const verifyData = await verifyResponse.json();
                             
@@ -551,11 +577,11 @@
                                 sessionStorage.setItem('paymentResponse', JSON.stringify(payload));
                                 window.location.href = 'payment-screen-2.html';
                             } else {
-                                throw new Error('Payment verification failed');
+                                throw new Error(verifyData.error || 'Payment verification failed');
                             }
                         } catch (error) {
                             console.error('Payment verification error:', error);
-                            alert('Payment verification failed. Please contact support.');
+                            alert(`Payment verification failed: ${error.message}. Please contact support.`);
                         }
                     },
                     prefill: {
@@ -575,13 +601,19 @@
                 const rzp = new Razorpay(options);
                 rzp.on('payment.failed', function (resp) {
                     console.error('Payment failed', resp.error);
-                    alert('Payment failed. Please try again.');
+                    alert(`Payment failed: ${resp.error.description || 'Please try again.'}`);
+                    // Reset button state
+                    payButton.disabled = false;
+                    payButton.textContent = originalText;
                 });
                 rzp.open();
                 
             } catch (error) {
                 console.error('Payment processing error:', error);
-                alert('Failed to process payment. Please try again.');
+                alert(`Failed to process payment: ${error.message}. Please try again.`);
+                // Reset button state
+                payButton.disabled = false;
+                payButton.textContent = originalText;
             }
         }
     </script>
@@ -594,10 +626,24 @@
             const body = document.body;
             
             if (burger && nav) {
-                burger.addEventListener('click', function() {
-                    nav.classList.toggle('open');
-                    burger.classList.toggle('active');
-                    body.classList.toggle('nav-open');
+                // Prevent default burger button behavior
+                burger.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    
+                    const isOpen = nav.classList.contains('open');
+                    
+                    if (isOpen) {
+                        // Close navigation
+                        nav.classList.remove('open');
+                        burger.classList.remove('active');
+                        body.classList.remove('nav-open');
+                    } else {
+                        // Open navigation
+                        nav.classList.add('open');
+                        burger.classList.add('active');
+                        body.classList.add('nav-open');
+                    }
                 });
                 
                 // Close nav when clicking on links
@@ -610,14 +656,31 @@
                     });
                 });
                 
-                // Close nav when clicking outside
+                // Close nav when clicking outside (but not on burger)
                 document.addEventListener('click', function(e) {
-                    if (!nav.contains(e.target) && !burger.contains(e.target)) {
-                        nav.classList.remove('open');
-                        burger.classList.remove('active');
-                        body.classList.remove('nav-open');
+                    if (nav.classList.contains('open')) {
+                        if (!nav.contains(e.target) && !burger.contains(e.target)) {
+                            nav.classList.remove('open');
+                            burger.classList.remove('active');
+                            body.classList.remove('nav-open');
+                        }
                     }
                 });
+                
+                // Prevent body scroll when nav is open
+                const originalStyle = window.getComputedStyle(body).overflow;
+                const observer = new MutationObserver(function(mutations) {
+                    mutations.forEach(function(mutation) {
+                        if (mutation.type === 'attributes' && mutation.attributeName === 'class') {
+                            if (body.classList.contains('nav-open')) {
+                                body.style.overflow = 'hidden';
+                            } else {
+                                body.style.overflow = originalStyle;
+                            }
+                        }
+                    });
+                });
+                observer.observe(body, { attributes: true, attributeFilter: ['class'] });
             }
         });
     </script>
