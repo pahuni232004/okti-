@@ -2,6 +2,26 @@
 .timeline, .milestones, .years-row { display: flex; align-items: center; justify-content: space-between; flex-wrap: nowrap; }
 .timeline .year, .milestones .year, .years-row .year { white-space: nowrap; }
 
+/* Final mobile safety overrides to ensure burger visibility on deployed envs */
+@media (max-width: 900px) {
+    header.header .burger {
+        display: flex !important;
+        position: absolute;
+        right: 12px;
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 1002; /* above nav overlay */
+    }
+    header.header .burger .line {
+        background: #000000;
+        width: 24px;
+        height: 2px;
+        margin: 3px 0;
+    }
+    /* Guard against any stray overlays covering the button */
+    header.header .nav { z-index: 999; }
+}
+
 /* Education card: center icon and title */
 .program-item .program-icon { margin-left: auto; margin-right: auto; }
 .program-item .program-title { text-align: center; }
