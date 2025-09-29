@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Screen 1 - Okti Foundation</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+    <style>
+        .payment-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            background: #f8f9fa;
+            min-height: 100vh;
+        }
+        
+        .payment-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 40px;
+        }
+        
+        .payment-title {
+            font-size: 1.5rem;
+            color: #2c3e50;
+            margin: 0;
+        }
+        
+        .payment-logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .payment-logo img {
+            height: 40px;
+        }
+        
+        .payment-logo-text {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #35BCFF;
+        }
+        
+        .payment-content {
+            display: grid;
+            grid-template-columns: 1fr 400px;
+            gap: 40px;
+        }
+        
+        .payment-main {
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .payment-nav {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 40px;
+        }
+        
+        .back-btn {
+            width: 40px;
+            height: 40px;
+            border: none;
+            background: #e9ecef;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            color: #2c3e50;
+        }
+        
+        .nav-text {
+            color: #2c3e50;
+            font-weight: 600;
+        }
+        
+        .nav-subtext {
+            color: #7f8c8d;
+            font-size: 0.9rem;
+        }
+        
+        
+        
+        .payment-methods {
+            margin-top: 30px;
+        }
+        
+        .method-tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 30px;
+        }
+        
+        .method-tab {
+            padding: 15px 25px;
+            border: none;
+            background: #f8f9fa;
+            border-radius: 10px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 500;
+            color: #7f8c8d;
+            transition: all 0.3s ease;
+        }
+        
+        .method-tab.active {
+            background: #e3f2fd;
+            color: #1976d2;
+        }
+        
+        .method-tab i {
+            font-size: 1.2rem;
+        }
+        
+        .payment-form {
+            display: none;
+        }
+        
+        .payment-form.active {
+            display: block;
+        }
+        
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: #2c3e50;
+        }
+        
+        .form-input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+        
+        .form-input:focus {
+            outline: none;
+            border-color: #35BCFF;
+        }
+        
+        .input-with-icon {
+            position: relative;
+        }
+        
+        .input-icon {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #7f8c8d;
+        }
+        
+        .summary-sidebar {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            height: fit-content;
+        }
+        
+        .summary-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #2c3e50;
+            margin-bottom: 25px;
+        }
+        
+        .summary-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #f8f9fa;
+        }
+        
+        .summary-item:last-child {
+            border-bottom: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: #DC2718;
+        }
+        
+        .summary-label {
+            color: #7f8c8d;
+        }
+        
+        .summary-value {
+            color: #2c3e50;
+            font-weight: 500;
+        }
+        
+        .donor-details {
+            margin-top: 30px;
+        }
+        
+        .donor-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+        
+        .donor-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+            color: #2c3e50;
+        }
+        
+        .donor-item i {
+            color: #35BCFF;
+            width: 20px;
+        }
+        
+        .security-info {
+            margin-top: 30px;
+        }
+        
+        .security-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 12px;
+            color: #7f8c8d;
+            font-size: 0.9rem;
+        }
+        
+        .security-item i {
+            color: #27ae60;
+            width: 20px;
+        }
+        
+        .pay-btn {
+            width: 100%;
+            background: #35BCFF;
+            color: white;
+            border: none;
+            padding: 15px;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 25px;
+            transition: background 0.3s ease;
+        }
+        
+        .pay-btn:hover {
+            background: #2980b9;
+        }
+        
+        .terms {
+            text-align: center;
+            margin-top: 20px;
+            color: #7f8c8d;
+            font-size: 0.85rem;
+        }
+        
+        @media (max-width: 768px) {
+            .payment-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .summary-sidebar {
+                order: -1;
+            }
+            
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="payment-container">
+        <div class="payment-header">
+            <h1 class="payment-title">Payment screen 1</h1>
+            <div class="payment-logo">
+                <img src="Logo Header.png" alt="Okti Foundation">
+            </div>
+        </div>
+        
+        <div class="payment-content">
+            <div class="payment-main">
+                <div class="payment-nav">
+                    <button class="back-btn" onclick="window.history.back()">
+                        <i class="fas fa-arrow-left"></i>
+                    </button>
+                    <div>
+                        <div class="nav-text">Complete Payment</div>
+                        <div class="nav-subtext">Secure payment gateway</div>
+                    </div>
+                </div>
+                
+                
+                
+                <div class="payment-methods">
+                    <h3>Choose Payment Method</h3>
+                    <div class="method-tabs">
+                        <button class="method-tab active" data-method="card">
+                            <i class="fas fa-credit-card"></i>
+                            Card
+                        </button>
+                        <button class="method-tab" data-method="upi">
+                            <i class="fas fa-mobile-alt"></i>
+                            UPI
+                        </button>
+                        <button class="method-tab" data-method="netbanking">
+                            <i class="fas fa-university"></i>
+                            Net Banking
+                        </button>
+                    </div>
+                    
+                    <div id="card-form" class="payment-form active">
+                        <div class="form-group">
+                            <label class="form-label">Card Number</label>
+                            <div class="input-with-icon">
+                                <input type="text" class="form-input" value="1234 5678 9012 3456" readonly>
+                                <i class="fas fa-calendar-alt input-icon"></i>
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="form-label">Expiry Date</label>
+                                <input type="text" class="form-input" placeholder="MM/YY">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">CVV</label>
+                                <input type="text" class="form-input" value="123" readonly>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label">Cardholder Name</label>
+                            <input type="text" class="form-input" value="John Doe" readonly>
+                        </div>
+                    </div>
+                    
+                    <div id="upi-form" class="payment-form">
+                        <div class="form-group">
+                            <label class="form-label">UPI ID</label>
+                            <input type="text" class="form-input" placeholder="Enter your UPI ID">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Mobile Number</label>
+                            <input type="text" class="form-input" placeholder="Enter your mobile number">
+                        </div>
+                    </div>
+                    
+                    <div id="netbanking-form" class="payment-form">
+                        <div class="form-group">
+                            <label class="form-label">Select Bank</label>
+                            <select class="form-input">
+                                <option>State Bank of India</option>
+                                <option>HDFC Bank</option>
+                                <option>ICICI Bank</option>
+                                <option>Axis Bank</option>
+                                <option>Kotak Mahindra Bank</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="summary-sidebar">
+                <h3 class="summary-title">Donation Summary</h3>
+                
+                <div class="summary-item">
+                    <span class="summary-label">Donation Type:</span>
+                    <span class="summary-value" id="donationType">one-time</span>
+                </div>
+                <div class="summary-item">
+                    <span class="summary-label">Amount:</span>
+                    <span class="summary-value" id="donationAmount">₹2,000</span>
+                </div>
+                <div class="summary-item">
+                    <span class="summary-label">Processing Fee:</span>
+                    <span class="summary-value">₹0</span>
+                </div>
+                <div class="summary-item">
+                    <span class="summary-label">Total:</span>
+                    <span class="summary-value" id="totalAmount">₹2,000</span>
+                </div>
+                
+                <div class="donor-details">
+                    <h4 class="donor-title">Donor Details</h4>
+                    <div class="donor-item">
+                        <i class="fas fa-user"></i>
+                        <span id="donorName">Ravi Shukla</span>
+                    </div>
+                    <div class="donor-item">
+                        <i class="fas fa-envelope"></i>
+                        <span id="donorEmail">Ravi.shukla@gmail.com</span>
+                    </div>
+                    <div class="donor-item">
+                        <i class="fas fa-phone"></i>
+                        <span id="donorPhone">+91 98765 43210</span>
+                    </div>
+                </div>
+                
+                <div class="security-info">
+                    <div class="security-item">
+                        <i class="fas fa-lock"></i>
+                        <span>SSL Secured Payment</span>
+                    </div>
+                    <div class="security-item">
+                        <i class="fas fa-file-shield"></i>
+                        <span>PCI DSS Compliant</span>
+                    </div>
+                    <div class="security-item">
+                        <i class="fas fa-certificate"></i>
+                        <span>80G Tax Exemption</span>
+                    </div>
+                </div>
+                
+                <button class="pay-btn" onclick="processPayment()">
+                    Pay ₹2,000
+                </button>
+                
+                <div class="terms">
+                    By proceeding, you agree to our Terms & Conditions
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Load donation data from session storage
+        const donationData = JSON.parse(sessionStorage.getItem('donationData') || '{}');
+        
+        // Update summary with actual data
+        document.getElementById('donorName').textContent = donationData.fullName || 'Ravi Shukla';
+        document.getElementById('donorEmail').textContent = donationData.emailAddress || 'Ravi.shukla@gmail.com';
+        document.getElementById('donorPhone').textContent = donationData.phoneNumber || '+91 98765 43210';
+        document.getElementById('donationAmount').textContent = `₹${(donationData.amount || 2000).toLocaleString()}`;
+        document.getElementById('totalAmount').textContent = `₹${(donationData.amount || 2000).toLocaleString()}`;
+        document.getElementById('donationType').textContent = donationData.type === 'monthly' ? 'monthly' : 'one-time';
+        
+        // Update pay button
+        document.querySelector('.pay-btn').textContent = `Pay ₹${(donationData.amount || 2000).toLocaleString()}`;
+        
+        // Payment method tabs
+        document.querySelectorAll('.method-tab').forEach(tab => {
+            tab.addEventListener('click', function() {
+                // Remove active class from all tabs and forms
+                document.querySelectorAll('.method-tab').forEach(t => t.classList.remove('active'));
+                document.querySelectorAll('.payment-form').forEach(f => f.classList.remove('active'));
+                
+                // Add active class to clicked tab
+                this.classList.add('active');
+                
+                // Show corresponding form
+                const method = this.dataset.method;
+                document.getElementById(`${method}-form`).classList.add('active');
+            });
+        });
+        
+        // Process payment with Razorpay
+        async function processPayment() {
+            try {
+                // Get Razorpay key from backend
+                const keyResponse = await fetch('/api/razorpay-key');
+                const { key } = await keyResponse.json();
+                
+                // Create order on backend
+                const orderResponse = await fetch('/api/create-order', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        amount: donationData.amount || 2000,
+                        currency: 'INR',
+                        receipt: `donation_${Date.now()}`,
+                        notes: {
+                            donor_name: donationData.fullName || '',
+                            donor_email: donationData.emailAddress || '',
+                            donor_phone: donationData.phoneNumber || '',
+                            donation_type: donationData.type || 'one-time'
+                        }
+                    })
+                });
+                
+                const orderData = await orderResponse.json();
+                
+                if (!orderData.success) {
+                    throw new Error(orderData.error || 'Failed to create order');
+                }
+
+                const options = {
+                    key: key,
+                    amount: orderData.order.amount,
+                    currency: orderData.order.currency,
+                    name: 'Okti Foundation',
+                    description: 'Donation to Okti Foundation',
+                    image: 'Logo Header.png',
+                    order_id: orderData.order.id,
+                    handler: async function(response) {
+                        try {
+                            // Verify payment on backend
+                            const verifyResponse = await fetch('/api/verify-payment', {
+                                method: 'POST',
+                                headers: {
+                                    'Content-Type': 'application/json',
+                                },
+                                body: JSON.stringify({
+                                    razorpay_order_id: response.razorpay_order_id,
+                                    razorpay_payment_id: response.razorpay_payment_id,
+                                    razorpay_signature: response.razorpay_signature
+                                })
+                            });
+                            
+                            const verifyData = await verifyResponse.json();
+                            
+                            if (verifyData.success) {
+                                // Store verified payment response
+                                const payload = {
+                                    razorpay_payment_id: response.razorpay_payment_id,
+                                    razorpay_order_id: response.razorpay_order_id,
+                                    razorpay_signature: response.razorpay_signature,
+                                    donation: donationData,
+                                    verified: true
+                                };
+                                sessionStorage.setItem('paymentResponse', JSON.stringify(payload));
+                                window.location.href = 'payment-screen-2.html';
+                            } else {
+                                throw new Error('Payment verification failed');
+                            }
+                        } catch (error) {
+                            console.error('Payment verification error:', error);
+                            alert('Payment verification failed. Please contact support.');
+                        }
+                    },
+                    prefill: {
+                        name: donationData.fullName || '',
+                        email: donationData.emailAddress || '',
+                        contact: donationData.phoneNumber || ''
+                    },
+                    theme: { color: '#35BCFF' },
+                    retry: { enabled: true, max_count: 1 },
+                    modal: {
+                        ondismiss: function() { 
+                            console.log('Payment cancelled'); 
+                        }
+                    }
+                };
+
+                const rzp = new Razorpay(options);
+                rzp.on('payment.failed', function (resp) {
+                    console.error('Payment failed', resp.error);
+                    alert('Payment failed. Please try again.');
+                });
+                rzp.open();
+                
+            } catch (error) {
+                console.error('Payment processing error:', error);
+                alert('Failed to process payment. Please try again.');
+            }
+        }
+    </script>
+
+    <script>
+        // Mobile navigation functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const burger = document.querySelector('.burger');
+            const nav = document.querySelector('.nav');
+            const body = document.body;
+            
+            if (burger && nav) {
+                burger.addEventListener('click', function() {
+                    nav.classList.toggle('open');
+                    burger.classList.toggle('active');
+                    body.classList.toggle('nav-open');
+                });
+                
+                // Close nav when clicking on links
+                const navLinks = document.querySelectorAll('.nav-link');
+                navLinks.forEach(link => {
+                    link.addEventListener('click', function() {
+                        nav.classList.remove('open');
+                        burger.classList.remove('active');
+                        body.classList.remove('nav-open');
+                    });
+                });
+                
+                // Close nav when clicking outside
+                document.addEventListener('click', function(e) {
+                    if (!nav.contains(e.target) && !burger.contains(e.target)) {
+                        nav.classList.remove('open');
+                        burger.classList.remove('active');
+                        body.classList.remove('nav-open');
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>

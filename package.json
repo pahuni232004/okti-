@@ -1,0 +1,11 @@
+{
+  "name": "okti-foundation-website",
+  "version": "1.0.0",
+  "description": "Okti Foundation website with donation system",
+  "scripts": {
+    "preview": "netlify dev"
+  },
+  "keywords": ["foundation", "donations", "healthcare", "netlify"],
+  "author": "Okti Foundation",
+  "license": "MIT"
+}

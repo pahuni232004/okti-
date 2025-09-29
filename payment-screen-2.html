@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Screen 2 - Okti Foundation</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .payment-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            background: #f8f9fa;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .payment-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 40px;
+        }
+        
+        .payment-title {
+            font-size: 1.5rem;
+            color: #2c3e50;
+            margin: 0;
+        }
+        
+        .payment-logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .payment-logo img {
+            height: 40px;
+        }
+        
+        .payment-logo-text {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #35BCFF;
+        }
+        
+        .success-container {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .success-card {
+            background: white;
+            border-radius: 20px;
+            padding: 60px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            max-width: 600px;
+            width: 100%;
+        }
+        
+        .success-icon {
+            width: 80px;
+            height: 80px;
+            background: #e8f5e8;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 30px;
+        }
+        
+        .success-icon i {
+            font-size: 2.5rem;
+            color: #27ae60;
+        }
+        
+        .success-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+        
+        .success-message {
+            font-size: 1.1rem;
+            color: #7f8c8d;
+            line-height: 1.6;
+            margin-bottom: 40px;
+        }
+        
+        .transaction-details {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 40px;
+            text-align: left;
+        }
+        
+        .transaction-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #e9ecef;
+        }
+        
+        .transaction-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+        
+        .transaction-label {
+            color: #7f8c8d;
+            font-weight: 500;
+        }
+        
+        .transaction-value {
+            color: #2c3e50;
+            font-weight: 600;
+        }
+        
+        .next-steps {
+            text-align: left;
+            margin-bottom: 40px;
+        }
+        
+        .next-steps h3 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+        
+        .next-step-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 15px;
+            color: #2c3e50;
+        }
+        
+        .next-step-item i {
+            color: #35BCFF;
+            font-size: 1.2rem;
+            width: 20px;
+        }
+        
+        .action-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin-bottom: 40px;
+        }
+        
+        .btn {
+            padding: 15px 30px;
+            border-radius: 10px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+        
+        .btn-secondary {
+            background: white;
+            color: #2c3e50;
+            border: 2px solid #e9ecef;
+        }
+        
+        .btn-secondary:hover {
+            border-color: #35BCFF;
+            color: #35BCFF;
+        }
+        
+        .btn-primary {
+            background: #35BCFF;
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background: #2980b9;
+        }
+        
+        .share-section {
+            margin-bottom: 40px;
+        }
+        
+        .share-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+        
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+        
+        .social-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: #DC2718;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+        
+        .social-icon:hover {
+            transform: scale(1.1);
+        }
+        
+        .footer-section {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: auto;
+            padding-top: 40px;
+        }
+        
+        .footer-text {
+            color: #7f8c8d;
+            font-size: 0.9rem;
+        }
+        
+        .impact-btn {
+            background: #35BCFF;
+            color: white;
+            padding: 12px 25px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background 0.3s ease;
+        }
+        
+        .impact-btn:hover {
+            background: #2980b9;
+        }
+        
+        @media (max-width: 768px) {
+            .success-card {
+                padding: 40px 30px;
+                margin: 20px;
+            }
+            
+            .success-title {
+                font-size: 2rem;
+            }
+            
+            .action-buttons {
+                flex-direction: column;
+            }
+            
+            .footer-section {
+                flex-direction: column;
+                gap: 20px;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="payment-container">
+        <div class="payment-header">
+            <h1 class="payment-title">Payment screen 2</h1>
+            <div class="payment-logo">
+                <img src="Logo Header.png" alt="Okti Foundation">
+                <span class="payment-logo-text">Okti Foundation</span>
+            </div>
+        </div>
+        
+        <div class="success-container">
+            <div class="success-card">
+                <div class="success-icon">
+                    <i class="fas fa-check"></i>
+                </div>
+                
+                <h2 class="success-title">Payment Successful!</h2>
+                
+                <p class="success-message">
+                    Thank you for your generous donation. Your contribution will help us reach more communities in need.
+                </p>
+                
+                <div class="transaction-details">
+                    <div class="transaction-item">
+                        <span class="transaction-label">Transaction ID:</span>
+                        <span class="transaction-value" id="transactionId">TXN12345678</span>
+                    </div>
+                    <div class="transaction-item">
+                        <span class="transaction-label">Amount:</span>
+                        <span class="transaction-value" id="transactionAmount">₹2,000</span>
+                    </div>
+                    <div class="transaction-item">
+                        <span class="transaction-label">Date:</span>
+                        <span class="transaction-value" id="transactionDate">24/08/2025</span>
+                    </div>
+                </div>
+                
+                <div class="next-steps">
+                    <h3>What's Next?</h3>
+                    <div class="next-step-item">
+                        <i class="fas fa-envelope"></i>
+                        <span>Receipt will be sent to your email</span>
+                    </div>
+                    <div class="next-step-item">
+                        <i class="fas fa-file-invoice"></i>
+                        <span>80G tax exemption certificate will follow</span>
+                    </div>
+                    <div class="next-step-item">
+                        <i class="fas fa-heart"></i>
+                        <span>Impact updates will be shared monthly</span>
+                    </div>
+                </div>
+                
+                <div class="action-buttons">
+                    <a href="index.html" class="btn btn-secondary">Back to Home</a>
+                </div>
+                
+                <div class="share-section">
+                    <h4 class="share-title">Share your good deed</h4>
+                    <div class="social-icons">
+                        <div class="social-icon" onclick="shareOnFacebook()">
+                            <i class="fab fa-facebook-f"></i>
+                        </div>
+                        <div class="social-icon" onclick="shareOnTwitter()">
+                            <i class="fab fa-twitter"></i>
+                        </div>
+                        <div class="social-icon" onclick="shareOnWhatsApp()">
+                            <i class="fab fa-whatsapp"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer-section">
+            <span class="footer-text">A-62</span>
+            <a href="#" class="impact-btn">See Your Impact</a>
+        </div>
+    </div>
+
+    <script>
+        // Load donation and payment data
+        const donationData = JSON.parse(sessionStorage.getItem('donationData') || '{}');
+        const paymentResponse = JSON.parse(sessionStorage.getItem('paymentResponse') || '{}');
+        
+        // Update transaction details
+        document.getElementById('transactionAmount').textContent = `₹${(donationData.amount || 2000).toLocaleString()}`;
+        
+        // Generate transaction ID if not available
+        if (paymentResponse.razorpay_payment_id) {
+            document.getElementById('transactionId').textContent = paymentResponse.razorpay_payment_id;
+        }
+        
+        // Set current date
+        const today = new Date();
+        const formattedDate = today.toLocaleDateString('en-GB');
+        document.getElementById('transactionDate').textContent = formattedDate;
+        
+        // Social sharing functions
+        function shareOnFacebook() {
+            const url = encodeURIComponent(window.location.origin);
+            const text = encodeURIComponent('I just made a donation to Okti Foundation! Join me in supporting their mission.');
+            window.open(`https://www.facebook.com/sharer/sharer.php?u=${url}&quote=${text}`, '_blank');
+        }
+        
+        function shareOnTwitter() {
+            const text = encodeURIComponent('I just made a donation to Okti Foundation! Join me in supporting their mission. #OktiFoundation #MakeADifference');
+            window.open(`https://twitter.com/intent/tweet?text=${text}`, '_blank');
+        }
+        
+        function shareOnWhatsApp() {
+            const text = encodeURIComponent('I just made a donation to Okti Foundation! Join me in supporting their mission to reach more communities in need.');
+            window.open(`https://wa.me/?text=${text}`, '_blank');
+        }
+        
+        // Clear session storage after successful payment
+        setTimeout(() => {
+            sessionStorage.removeItem('donationData');
+            sessionStorage.removeItem('paymentResponse');
+        }, 5000);
+    </script>
+
+    <script>
+        // Mobile navigation functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const burger = document.querySelector('.burger');
+            const nav = document.querySelector('.nav');
+            const body = document.body;
+            
+            if (burger && nav) {
+                burger.addEventListener('click', function() {
+                    nav.classList.toggle('open');
+                    burger.classList.toggle('active');
+                    body.classList.toggle('nav-open');
+                });
+                
+                // Close nav when clicking on links
+                const navLinks = document.querySelectorAll('.nav-link');
+                navLinks.forEach(link => {
+                    link.addEventListener('click', function() {
+                        nav.classList.remove('open');
+                        burger.classList.remove('active');
+                        body.classList.remove('nav-open');
+                    });
+                });
+                
+                // Close nav when clicking outside
+                document.addEventListener('click', function(e) {
+                    if (!nav.contains(e.target) && !burger.contains(e.target)) {
+                        nav.classList.remove('open');
+                        burger.classList.remove('active');
+                        body.classList.remove('nav-open');
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>

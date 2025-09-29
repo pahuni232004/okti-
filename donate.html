@@ -1,0 +1,1249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Donate - Okti Foundation</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <img src="Logo Header.png" alt="Okti Foundation" class="logo-img">
+                </div>
+                <button class="burger" aria-label="Toggle navigation">
+                    <span class="line"></span>
+                    <span class="line"></span>
+                    <span class="line"></span>
+                </button>
+                <nav class="nav">
+                    <ul class="nav-list">
+                        <li><a href="index.html" class="nav-link">Home</a></li>
+                        <li><a href="about.html" class="nav-link">About Us</a></li>
+                        <li><a href="journey.html" class="nav-link">Our Journey</a></li>
+                        <li><a href="education.html" class="nav-link">Education & Skill</a></li>
+                        <li class="nav-donate"><a href="donate.html#make-donation" class="donate-btn-header">Donate Now</a></li>
+                    </ul>
+                </nav>
+                <a href="#make-donation" class="donate-btn-header">Donate Now</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="donate-hero">
+        <div class="hero-background">
+            <img src="Images/Donate page image.png" alt="Medical professionals" class="hero-image">
+            <div class="hero-overlay"></div>
+        </div>
+        <div class="hero-content">
+            <div class="container">
+                <h1 class="hero-title">Support Our Mission</h1>
+                <p class="hero-subtitle">Your donation helps us reach the unreached with life-saving surgeries, vaccination drives, and women's healthcare programs across rural India.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Donate Section -->
+    <section class="why-donate">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Why Donate?</h2>
+                <p class="section-subtitle">Your support directly transforms lives in rural communities. Every rupee makes a difference in bringing quality healthcare to those who need it most.</p>
+            </div>
+            <div class="donation-cards">
+                <div class="donation-card">
+                    <div class="donation-icon">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <h3 class="donation-title">Fund a Surgery</h3>
+                    <p class="donation-description">₹10,000 can fund a complete surgical procedure for a woman in need.</p>
+                </div>
+                
+                <div class="donation-card">
+                    <div class="donation-icon">
+                        <i class="fas fa-syringe"></i>
+                    </div>
+                    <h3 class="donation-title">Sponsor an HPV Vaccine</h3>
+                    <p class="donation-description">₹1,100 helps purchase one vaccine for one girl child.</p>
+                </div>
+                
+                <div class="donation-card">
+                    <div class="donation-icon">
+                        <i class="fas fa-hospital"></i>
+                    </div>
+                    <h3 class="donation-title">Sponsor a Camp</h3>
+                    <p class="donation-description">₹1 Lakh can sponsor ten surgeries, that is, one surgical camp.</p>
+                </div>
+                
+                <div class="donation-card">
+                    <div class="donation-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3 class="donation-title">Vaccinate 10 Girls Against Cervical Cancer</h3>
+                    <p class="donation-description">₹11,000 provides HPV vaccines for 10 young girls, preventing cervical cancer.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Secure Payment Options Section -->
+    <section class="payment-options">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Secure Payment Options</h2>
+            </div>
+            <div class="payment-cards">
+                <div class="payment-card">
+                    <div class="payment-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3 class="payment-title">UPI Payments</h3>
+                    <p class="payment-description">Quick and secure UPI transfers supported.</p>
+                </div>
+                
+                <div class="payment-card">
+                    <div class="payment-icon">
+                        <i class="fas fa-credit-card"></i>
+                    </div>
+                    <h3 class="payment-title">Cards & Net Banking</h3>
+                    <p class="payment-description">All major credit/debit cards and net banking.</p>
+                </div>
+                
+                <div class="payment-card">
+                    <div class="payment-icon">
+                        <i class="fas fa-sync-alt"></i>
+                    </div>
+                    <h3 class="payment-title">Recurring Donations</h3>
+                    <p class="payment-description">Set up monthly recurring contributions.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Legal Compliance Section -->
+    <section class="legal-compliance">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Legal Compliance & Tax Benefits</h2>
+            </div>
+            <div class="legal-cards">
+                <div class="legal-card">
+                    <div class="legal-icon">
+                        <i class="fas fa-file-alt"></i>
+                    </div>
+                    <h3 class="legal-title">Section 12A & 80G Registration</h3>
+                    <p class="legal-description">Okti Foundation is registered under Section 12A & Section 80G of the Income Tax Act, ensuring all donations qualify for tax exemptions.</p>
+                </div>
+                
+                <div class="legal-card">
+                    <div class="legal-icon">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <h3 class="legal-title">FCRA Registered</h3>
+                    <p class="legal-description">Registered under the Foreign Contribution Regulation Act (2010)</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Make a Donation Section -->
+    <section class="make-donation" id="make-donation">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Make a Donation</h2>
+                <p class="section-subtitle">Choose your donation amount and help us continue our life-saving work.</p>
+            </div>
+            <div class="donation-form-container">
+                <form class="donation-form" id="donationForm">
+                    <!-- Donation Type Toggle -->
+                    <div class="donation-type-toggle">
+                        <label class="toggle-label active">
+                            <input type="radio" name="donationType" value="one-time" checked>
+                            <span class="toggle-text">One-time</span>
+                        </label>
+                        <label class="toggle-label">
+                            <input type="radio" name="donationType" value="monthly">
+                            <span class="toggle-text">Monthly</span>
+                        </label>
+                    </div>
+                    
+                    <!-- Donation Amount Selection -->
+                    <div class="amount-selection">
+                        <button type="button" class="amount-btn" data-amount="10000">
+                            <span class="amount">₹10,000</span>
+                            <span class="amount-desc">Fund a Surgery</span>
+                        </button>
+                        <button type="button" class="amount-btn active" data-amount="100000">
+                            <span class="amount">₹1 Lakh</span>
+                            <span class="amount-desc">Sponsor a Camp</span>
+                        </button>
+                        <button type="button" class="amount-btn" data-amount="1100">
+                            <span class="amount">₹1,100</span>
+                            <span class="amount-desc">Sponsor an HPV Vaccine</span>
+                        </button>
+                        <button type="button" class="amount-btn" data-amount="11000">
+                            <span class="amount">₹11,000</span>
+                            <span class="amount-desc">Vaccinate 10 Girls Against Cervical Cancer</span>
+                        </button>
+                    </div>
+                    
+                    <!-- Custom Amount Input -->
+                    <div class="custom-amount-section">
+                        <label class="custom-amount-label">Or enter custom amount</label>
+                        <div class="custom-amount-input">
+                            <span class="rupee-symbol">₹</span>
+                            <input type="number" id="customAmount" class="form-input" placeholder="Enter amount" min="100">
+                        </div>
+                    </div>
+                    
+                    <!-- Form Fields in Two Columns -->
+                    <div class="form-fields-grid">
+                        <div class="form-group">
+                            <label class="form-label">Full Name *</label>
+                            <input type="text" id="fullName" class="form-input" placeholder="Enter your full name" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label">Email Address *</label>
+                            <input type="email" id="emailAddress" class="form-input" placeholder="Enter your email" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label">Phone Number *</label>
+                            <input type="tel" id="phoneNumber" class="form-input" placeholder="Enter your phone number" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label">PAN Number (for 80G receipt) *</label>
+                            <input type="text" id="panNumber" class="form-input" placeholder="Enter PAN number" required>
+                        </div>
+                        
+                        <div class="form-group full-width">
+                            <label class="form-label">Address (for donation receipt) *</label>
+                            <textarea id="address" class="form-textarea" placeholder="Enter your complete address" rows="3" required></textarea>
+                        </div>
+                        
+                        <div class="form-group full-width">
+                            <label class="form-label">Message (Optional)</label>
+                            <textarea id="message" class="form-textarea" placeholder="Share why you're supporting our mission..." rows="3"></textarea>
+                        </div>
+                    </div>
+                    
+                    <!-- Newsletter Subscription -->
+                    <div class="newsletter-subscription">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="newsletter">
+                            <span class="checkbox-text">I would like to receive updates about Okti Foundation's work and impact.</span>
+                        </label>
+                    </div>
+                    
+                    <!-- Donation Summary -->
+                    <div class="donation-summary">
+                        <div class="summary-header">
+                            <i class="fas fa-info-circle"></i>
+                            <span class="summary-title">Donation Summary</span>
+                        </div>
+                        <div class="summary-content">
+                            <div class="summary-item">
+                                <span class="summary-label">Amount:</span>
+                                <span class="summary-value" id="summaryAmount">₹100,000 (one-time)</span>
+                            </div>
+                            <div class="summary-item">
+                                <span class="summary-label">Tax benefit:</span>
+                                <span class="summary-value">80G exemption available for Indian taxpayers</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Donate Button -->
+                    <button type="button" id="donateSubmitBtn" class="donate-submit-btn">
+                        <i class="fas fa-heart"></i>
+                        <span id="donateButtonText">Donate ₹100,000</span>
+                    </button>
+                    
+                    <!-- Security Notice -->
+                    <div class="security-notice">
+                        <div class="security-item">
+                            <i class="fas fa-lock"></i>
+                            <span>SSL Secured</span>
+                        </div>
+                        <div class="security-item">
+                            <i class="fas fa-shield-alt"></i>
+                            <span>Safe & Secure</span>
+                        </div>
+                        <div class="security-item">
+                            <i class="fas fa-certificate"></i>
+                            <span>80G Tax Benefit</span>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gratitude Wall Section -->
+    <section class="gratitude-wall">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Our Gratitude Wall</h2>
+                <p class="section-subtitle">We are deeply grateful to all our supporters whose generosity makes our mission possible. Their contributions, whether financial, professional, or voluntary, help us continue reaching the unreached.</p>
+            </div>
+            
+            <!-- Institutional Donors -->
+            <div class="donors-section">
+                <h3 class="donors-title">Institutional Donors</h3>
+                <div class="institutional-donors">
+                    <div class="donor-card institutional-card">
+                        <div class="donor-icon">
+                            <i class="fas fa-building"></i>
+                        </div>
+                        <div class="donor-info">
+                            <span class="donor-name">Bill & Melinda Gates Foundation</span>
+                            <span class="donor-type">Institutional Partner</span>
+                        </div>
+                    </div>
+                    <div class="donor-card institutional-card">
+                        <div class="donor-icon">
+                            <i class="fas fa-building"></i>
+                        </div>
+                        <div class="donor-info">
+                            <span class="donor-name">Pitam Chand Charitable Trust</span>
+                            <span class="donor-type">Institutional Partner</span>
+                        </div>
+                    </div>
+                    <div class="donor-card institutional-card">
+                        <div class="donor-icon">
+                            <i class="fas fa-building"></i>
+                        </div>
+                        <div class="donor-info">
+                            <span class="donor-name">Sun Pharmaceuticals</span>
+                            <span class="donor-type">Institutional Partner</span>
+                        </div>
+                    </div>
+                    <div class="donor-card institutional-card">
+                        <div class="donor-icon">
+                            <i class="fas fa-building"></i>
+                        </div>
+                        <div class="donor-info">
+                            <span class="donor-name">Curevita Pharmaceuticals</span>
+                            <span class="donor-type">Institutional Partner</span>
+                        </div>
+                    </div>
+                    <div class="donor-card institutional-card">
+                        <div class="donor-icon">
+                            <i class="fas fa-building"></i>
+                        </div>
+                        <div class="donor-info">
+                            <span class="donor-name">McLeod's Pharmaceuticals</span>
+                            <span class="donor-type">Institutional Partner</span>
+                        </div>
+                    </div>
+                    <div class="donor-card institutional-card">
+                        <div class="donor-icon">
+                            <i class="fas fa-building"></i>
+                        </div>
+                        <div class="donor-info">
+                            <span class="donor-name">ONGC</span>
+                            <span class="donor-type">Institutional Partner</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Individual Donors -->
+            <div class="donors-section">
+                <h3 class="donors-title">Individual Donors (2024)</h3>
+                <div class="individual-donors">
+                    <div class="donor-card individual-card">
+                        <div class="donor-icon">
+                            <i class="fas fa-heart"></i>
+                        </div>
+                        <span class="donor-name">Mr. Harbans Lal Bathla</span>
+                    </div>
+                    <div class="donor-card individual-card">
+                        <div class="donor-icon">
+                            <i class="fas fa-heart"></i>
+                        </div>
+                        <span class="donor-name">Ms. Sumita Devi</span>
+                    </div>
+                    <div class="donor-card individual-card">
+                        <div class="donor-icon">
+                            <i class="fas fa-heart"></i>
+                        </div>
+                        <span class="donor-name">Mr. Ashok Bansal</span>
+                    </div>
+                    <div class="donor-card individual-card">
+                        <div class="donor-icon">
+                            <i class="fas fa-heart"></i>
+                        </div>
+                        <span class="donor-name">Ms. Swati Suri</span>
+                    </div>
+                    <div class="donor-card individual-card">
+                        <div class="donor-icon">
+                            <i class="fas fa-heart"></i>
+                        </div>
+                        <span class="donor-name">Ms. Sudesh Arora</span>
+                    </div>
+                    <div class="donor-card individual-card">
+                        <div class="donor-icon">
+                            <i class="fas fa-heart"></i>
+                        </div>
+                        <span class="donor-name">Mr. B.K. Kapila</span>
+                    </div>
+                    <div class="donor-card individual-card">
+                        <div class="donor-icon">
+                            <i class="fas fa-heart"></i>
+                        </div>
+                        <span class="donor-name">Mr. Himanshu Nagpal</span>
+                    </div>
+                    <div class="donor-card individual-card">
+                        <div class="donor-icon">
+                            <i class="fas fa-heart"></i>
+                        </div>
+                        <span class="donor-name">Mr. Naresh & Mrs. Indu Taneja</span>
+                    </div>
+                    <div class="donor-card individual-card">
+                        <div class="donor-icon">
+                            <i class="fas fa-heart"></i>
+                        </div>
+                        <span class="donor-name">Mr. Anand Sagar</span>
+                    </div>
+                    <div class="donor-card individual-card">
+                        <div class="donor-icon">
+                            <i class="fas fa-heart"></i>
+                        </div>
+                        <span class="donor-name">Dr. Deepak Gupta</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section class="team-section">
+        <div class="container">
+            <div class="team-container">
+                <h2 class="team-title">Team</h2>
+                <p class="team-subtitle">Dedicated doctors, nurses, paramedics, and community workers who give their time and skill selflessly.</p>
+                
+                <div class="team-carousel">
+                    <button class="team-btn prev-btn" onclick="moveTeamSlider(-1)">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <div class="team-slider">
+                        <div class="team-track" id="teamTrack">
+                            <!-- Slide 1 -->
+                            <div class="team-slide">
+                                <div class="team-card">
+                                    <div class="team-icon">
+                                        <i class="fas fa-user-md"></i>
+                                    </div>
+                                    <h3 class="team-name">Dr. George Verghese</h3>
+                                    <p class="team-role">Core Volunteer</p>
+                                </div>
+                                <div class="team-card">
+                                    <div class="team-icon">
+                                        <i class="fas fa-user-md"></i>
+                                    </div>
+                                    <h3 class="team-name">Dr. Sonal Bathla</h3>
+                                    <p class="team-role">Core Volunteer</p>
+                                </div>
+                                <div class="team-card">
+                                    <div class="team-icon">
+                                        <i class="fas fa-user-md"></i>
+                                    </div>
+                                    <h3 class="team-name">Dr. T.C. Sharma</h3>
+                                    <p class="team-role">Core Volunteer</p>
+                                </div>
+                                <div class="team-card">
+                                    <div class="team-icon">
+                                        <i class="fas fa-user-md"></i>
+                                    </div>
+                                    <h3 class="team-name">Dr. Vinod Kalla</h3>
+                                    <p class="team-role">Core Volunteer</p>
+                                </div>
+                                <div class="team-card">
+                                    <div class="team-icon">
+                                        <i class="fas fa-users"></i>
+                                    </div>
+                                    <h3 class="team-name">Dr. Naresh Singla</h3>
+                                    <p class="team-role">Core Volunteer</p>
+                                </div>
+                                <div class="team-card">
+                                    <div class="team-icon">
+                                        <i class="fas fa-user-md"></i>
+                                    </div>
+                                    <h3 class="team-name">Dr. Preeti Yadav</h3>
+                                    <p class="team-role">Core Volunteer</p>
+                                </div>
+                            </div>
+                            
+                            <!-- Slide 2 -->
+                            <div class="team-slide">
+                                <div class="team-card">
+                                    <div class="team-icon">
+                                        <i class="fas fa-user-md"></i>
+                                    </div>
+                                    <h3 class="team-name">Dr. Babitha</h3>
+                                    <p class="team-role">Core Volunteer</p>
+                                </div>
+                                <div class="team-card">
+                                    <div class="team-icon">
+                                        <i class="fas fa-user-md"></i>
+                                    </div>
+                                    <h3 class="team-name">Dr. Viju John</h3>
+                                    <p class="team-role">Core Volunteer</p>
+                                </div>
+                                <div class="team-card">
+                                    <div class="team-icon">
+                                        <i class="fas fa-user-md"></i>
+                                    </div>
+                                    <h3 class="team-name">Dr. Prabhudas</h3>
+                                    <p class="team-role">Core Volunteer</p>
+                                </div>
+                                <div class="team-card">
+                                    <div class="team-icon">
+                                        <i class="fas fa-user-md"></i>
+                                    </div>
+                                    <h3 class="team-name">Dr. Mandeep</h3>
+                                    <p class="team-role">Core Volunteer</p>
+                                </div>
+                                <div class="team-card">
+                                    <div class="team-icon">
+                                        <i class="fas fa-user-md"></i>
+                                    </div>
+                                    <h3 class="team-name">Dr. Sweta Balani</h3>
+                                    <p class="team-role">Core Volunteer</p>
+                                </div>
+                                <div class="team-card">
+                                    <div class="team-icon">
+                                        <i class="fas fa-user-md"></i>
+                                    </div>
+                                    <h3 class="team-name">Dr. Bhawna</h3>
+                                    <p class="team-role">Core Volunteer</p>
+                                </div>
+                            </div>
+                            
+                            <!-- Slide 3 -->
+                            <div class="team-slide">
+                                <div class="team-card">
+                                    <div class="team-icon">
+                                        <i class="fas fa-users"></i>
+                                    </div>
+                                    <h3 class="team-name">Dr. Sonal</h3>
+                                    <p class="team-role">Core Volunteer</p>
+                                </div>
+                                <div class="team-card">
+                                    <div class="team-icon">
+                                        <i class="fas fa-user-md"></i>
+                                    </div>
+                                    <h3 class="team-name">Dr. Chingmak</h3>
+                                    <p class="team-role">Core Volunteer</p>
+                                </div>
+                                <div class="team-card">
+                                    <div class="team-icon">
+                                        <i class="fas fa-user-md"></i>
+                                    </div>
+                                    <h3 class="team-name">Dr. Raminder Sehgal</h3>
+                                    <p class="team-role">Core Volunteer</p>
+                                </div>
+                                <div class="team-card">
+                                    <div class="team-icon">
+                                        <i class="fas fa-user-md"></i>
+                                    </div>
+                                    <h3 class="team-name">Dr. Subroto Dam</h3>
+                                    <p class="team-role">Core Volunteer</p>
+                                </div>
+                                <div class="team-card">
+                                    <div class="team-icon">
+                                        <i class="fas fa-user-md"></i>
+                                    </div>
+                                    <h3 class="team-name">Dr. Swati</h3>
+                                    <p class="team-role">Core Volunteer</p>
+                                </div>
+                            </div>
+                            
+                            <!-- Slide 4 -->
+                            <div class="team-slide">
+                                <div class="team-card">
+                                    <div class="team-icon">
+                                        <i class="fas fa-user-md"></i>
+                                    </div>
+                                    <h3 class="team-name">Dr. Parishud Rao</h3>
+                                    <p class="team-role">Core Volunteer</p>
+                                </div>
+                                <div class="team-card">
+                                    <div class="team-icon">
+                                        <i class="fas fa-user-md"></i>
+                                    </div>
+                                    <h3 class="team-name">Dr. Chandan</h3>
+                                    <p class="team-role">Core Volunteer</p>
+                                </div>
+                                <div class="team-card">
+                                    <div class="team-icon">
+                                        <i class="fas fa-user-md"></i>
+                                    </div>
+                                    <h3 class="team-name">Dr. S.K</h3>
+                                    <p class="team-role">Core Volunteer</p>
+                                </div>
+                                <div class="team-card">
+                                    <div class="team-icon">
+                                        <i class="fas fa-users"></i>
+                                    </div>
+                                    <h3 class="team-name">Dr. Angeline</h3>
+                                    <p class="team-role">Core Volunteer</p>
+                                </div>
+                                <div class="team-card">
+                                    <div class="team-icon">
+                                        <i class="fas fa-user-md"></i>
+                                    </div>
+                                    <h3 class="team-name">Dr. Satya</h3>
+                                    <p class="team-role">Core Volunteer</p>
+                                </div>
+                                <div class="team-card">
+                                    <div class="team-icon">
+                                        <i class="fas fa-user-md"></i>
+                                    </div>
+                                    <h3 class="team-name">Dr. Betzy</h3>
+                                    <p class="team-role">Core Volunteer</p>
+                                </div>
+                            </div>
+                            
+                            <!-- Slide 5 -->
+                            <div class="team-slide">
+                                <div class="team-card">
+                                    <div class="team-icon">
+                                        <i class="fas fa-user-md"></i>
+                                    </div>
+                                    <h3 class="team-name">Dr. Angel</h3>
+                                    <p class="team-role">Core Volunteer</p>
+                                </div>
+                                <div class="team-card">
+                                    <div class="team-icon">
+                                        <i class="fas fa-user-md"></i>
+                                    </div>
+                                    <h3 class="team-name">Dr. Bazliel</h3>
+                                    <p class="team-role">Core Volunteer</p>
+                                </div>
+                                <div class="team-card">
+                                    <div class="team-icon">
+                                        <i class="fas fa-user-md"></i>
+                                    </div>
+                                    <h3 class="team-name">Dr. Shiela Verghese</h3>
+                                    <p class="team-role">Core Volunteer</p>
+                                </div>
+                                <div class="team-card">
+                                    <div class="team-icon">
+                                        <i class="fas fa-user-md"></i>
+                                    </div>
+                                    <h3 class="team-name">Dr. Raghav</h3>
+                                    <p class="team-role">Core Volunteer</p>
+                                </div>
+                                <div class="team-card">
+                                    <div class="team-icon">
+                                        <i class="fas fa-user-md"></i>
+                                    </div>
+                                    <h3 class="team-name">Dr. Shailesh</h3>
+                                    <p class="team-role">Core Volunteer</p>
+                                </div>
+                                <div class="team-card">
+                                    <div class="team-icon">
+                                        <i class="fas fa-users"></i>
+                                    </div>
+                                    <h3 class="team-name">Dr Uttam Mahaprartra</h3>
+                                    <p class="team-role">Core Volunteer</p>
+                                </div>
+                            </div>
+                            
+                            <!-- Slide 6 -->
+                            <div class="team-slide">
+                                <div class="team-card">
+                                    <div class="team-icon">
+                                        <i class="fas fa-user-md"></i>
+                                    </div>
+                                    <h3 class="team-name">Mr. Harish</h3>
+                                    <p class="team-role">Core Volunteer</p>
+                                </div>
+                                <div class="team-card">
+                                    <div class="team-icon">
+                                        <i class="fas fa-user-md"></i>
+                                    </div>
+                                    <h3 class="team-name">Dr. Anupam Phlip</h3>
+                                    <p class="team-role">Core Volunteer</p>
+                                </div>
+                                <div class="team-card">
+                                    <div class="team-icon">
+                                        <i class="fas fa-user-md"></i>
+                                    </div>
+                                    <h3 class="team-name">Dr Rechal Phlip</h3>
+                                    <p class="team-role">Core Volunteer</p>
+                                </div>
+                                <div class="team-card">
+                                    <div class="team-icon">
+                                        <i class="fas fa-user-md"></i>
+                                    </div>
+                                    <h3 class="team-name">Dr. Deepa Agarwal</h3>
+                                    <p class="team-role">Core Volunteer</p>
+                                </div>
+                                <div class="team-card">
+                                    <div class="team-icon">
+                                        <i class="fas fa-user-md"></i>
+                                    </div>
+                                    <h3 class="team-name">Dr. Tina</h3>
+                                    <p class="team-role">Core Volunteer</p>
+                                </div>
+                                <div class="team-card">
+                                    <div class="team-icon">
+                                        <i class="fas fa-user-md"></i>
+                                    </div>
+                                    <h3 class="team-name">Dr. Naru</h3>
+                                    <p class="team-role">Core Volunteer</p>
+                                </div>
+                            </div>
+                            
+                            <!-- Slide 7 -->
+                            <div class="team-slide">
+                                <div class="team-card">
+                                    <div class="team-icon">
+                                        <i class="fas fa-user-md"></i>
+                                    </div>
+                                    <h3 class="team-name">Dr. Dinesh</h3>
+                                    <p class="team-role">Core Volunteer</p>
+                                </div>
+                                <div class="team-card">
+                                    <div class="team-icon">
+                                        <i class="fas fa-users"></i>
+                                    </div>
+                                    <h3 class="team-name">Dr. Sampat</h3>
+                                    <p class="team-role">Core Volunteer</p>
+                                </div>
+                                <div class="team-card">
+                                    <div class="team-icon">
+                                        <i class="fas fa-user-md"></i>
+                                    </div>
+                                    <h3 class="team-name">Dr. Anju Bala</h3>
+                                    <p class="team-role">Core Volunteer</p>
+                                </div>
+                                <div class="team-card">
+                                    <div class="team-icon">
+                                        <i class="fas fa-user-md"></i>
+                                    </div>
+                                    <h3 class="team-name">Dr. Shalu Jain</h3>
+                                    <p class="team-role">Core Volunteer</p>
+                                </div>
+                                <div class="team-card">
+                                    <div class="team-icon">
+                                        <i class="fas fa-user-md"></i>
+                                    </div>
+                                    <h3 class="team-name">Dr. Akanksha</h3>
+                                    <p class="team-role">Core Volunteer</p>
+                                </div>
+                                <div class="team-card">
+                                    <div class="team-icon">
+                                        <i class="fas fa-user-md"></i>
+                                    </div>
+                                    <h3 class="team-name">Dr. Serin</h3>
+                                    <p class="team-role">Core Volunteer</p>
+                                </div>
+                            </div>
+                            
+                            <!-- Slide 8 -->
+                            <div class="team-slide">
+                                <div class="team-card">
+                                    <div class="team-icon">
+                                        <i class="fas fa-user-md"></i>
+                                    </div>
+                                    <h3 class="team-name">Dr. Mittali</h3>
+                                    <p class="team-role">Core Volunteer</p>
+                                </div>
+                                <div class="team-card">
+                                    <div class="team-icon">
+                                        <i class="fas fa-user-md"></i>
+                                    </div>
+                                    <h3 class="team-name">Dr. Tova</h3>
+                                    <p class="team-role">Core Volunteer</p>
+                                </div>
+                                <div class="team-card">
+                                    <div class="team-icon">
+                                        <i class="fas fa-user-md"></i>
+                                    </div>
+                                    <h3 class="team-name">Dr. Dolkar</h3>
+                                    <p class="team-role">Core Volunteer</p>
+                                </div>
+                                <div class="team-card">
+                                    <div class="team-icon">
+                                        <i class="fas fa-users"></i>
+                                    </div>
+                                    <h3 class="team-name">Dr. Bhanupriya</h3>
+                                    <p class="team-role">Core Volunteer</p>
+                                </div>
+                                <div class="team-card">
+                                    <div class="team-icon">
+                                        <i class="fas fa-user-md"></i>
+                                    </div>
+                                    <h3 class="team-name">Dr. Temsula</h3>
+                                    <p class="team-role">Core Volunteer</p>
+                                </div>
+                                <div class="team-card">
+                                    <div class="team-icon">
+                                        <i class="fas fa-user-md"></i>
+                                    </div>
+                                    <h3 class="team-name">Dr. Arpit Mathew</h3>
+                                    <p class="team-role">Core Volunteer</p>
+                                </div>
+                            </div>
+                            
+                            <!-- Slide 9 -->
+                            <div class="team-slide">
+                                <div class="team-card">
+                                    <div class="team-icon">
+                                        <i class="fas fa-user-md"></i>
+                                    </div>
+                                    <h3 class="team-name">Dr. Prabhu</h3>
+                                    <p class="team-role">Core Volunteer</p>
+                                </div>
+                                <div class="team-card">
+                                    <div class="team-icon">
+                                        <i class="fas fa-user-md"></i>
+                                    </div>
+                                    <h3 class="team-name">Dr Twinkle Rathore</h3>
+                                    <p class="team-role">Core Volunteer</p>
+                                </div>
+                                <div class="team-card">
+                                    <div class="team-icon">
+                                        <i class="fas fa-user-md"></i>
+                                    </div>
+                                    <h3 class="team-name">Mr Shankar Ramachandran</h3>
+                                    <p class="team-role">Core Volunteer</p>
+                                </div>
+                                <div class="team-card">
+                                    <div class="team-icon">
+                                        <i class="fas fa-user-md"></i>
+                                    </div>
+                                    <h3 class="team-name">Mr Dilip</h3>
+                                    <p class="team-role">Core Volunteer</p>
+                                </div>
+                                <div class="team-card">
+                                    <div class="team-icon">
+                                        <i class="fas fa-user-md"></i>
+                                    </div>
+                                    <h3 class="team-name">Ms Raksha</h3>
+                                    <p class="team-role">Core Volunteer</p>
+                                </div>
+                                <div class="team-card">
+                                    <div class="team-icon">
+                                        <i class="fas fa-users"></i>
+                                    </div>
+                                    <h3 class="team-name">Ms Somlata</h3>
+                                    <p class="team-role">Core Volunteer</p>
+                                </div>
+                            </div>
+                            
+                            <!-- Slide 10 -->
+                            <div class="team-slide">
+                                <div class="team-card">
+                                    <div class="team-icon">
+                                        <i class="fas fa-user-md"></i>
+                                    </div>
+                                    <h3 class="team-name">Ms Dolma</h3>
+                                    <p class="team-role">Core Volunteer</p>
+                                </div>
+                                <div class="team-card">
+                                    <div class="team-icon">
+                                        <i class="fas fa-user-md"></i>
+                                    </div>
+                                    <h3 class="team-name">Ms Priyanka</h3>
+                                    <p class="team-role">Core Volunteer</p>
+                                </div>
+                                <div class="team-card">
+                                    <div class="team-icon">
+                                        <i class="fas fa-user-md"></i>
+                                    </div>
+                                    <h3 class="team-name">Mr Sushant</h3>
+                                    <p class="team-role">Core Volunteer</p>
+                                </div>
+                                <div class="team-card">
+                                    <div class="team-icon">
+                                        <i class="fas fa-user-md"></i>
+                                    </div>
+                                    <h3 class="team-name">Dr. Novin</h3>
+                                    <p class="team-role">Core Volunteer</p>
+                                </div>
+                                <div class="team-card">
+                                    <div class="team-icon">
+                                        <i class="fas fa-user-md"></i>
+                                    </div>
+                                    <h3 class="team-name">Dr. Ravi George</h3>
+                                    <p class="team-role">Core Volunteer</p>
+                                </div>
+                                <div class="team-card">
+                                    <div class="team-icon">
+                                        <i class="fas fa-user-md"></i>
+                                    </div>
+                                    <h3 class="team-name">Dr. Josy</h3>
+                                    <p class="team-role">Core Volunteer</p>
+                                </div>
+                            </div>
+                            
+                            <!-- Slide 11 -->
+                            <div class="team-slide">
+                                <div class="team-card">
+                                    <div class="team-icon">
+                                        <i class="fas fa-user-md"></i>
+                                    </div>
+                                    <h3 class="team-name">Dr. Narjeet Kaur</h3>
+                                    <p class="team-role">Core Volunteer</p>
+                                </div>
+                                <div class="team-card">
+                                    <div class="team-icon">
+                                        <i class="fas fa-users"></i>
+                                    </div>
+                                    <h3 class="team-name">Dr. Mohini Agarwal</h3>
+                                    <p class="team-role">Core Volunteer</p>
+                                </div>
+                                <div class="team-card">
+                                    <div class="team-icon">
+                                        <i class="fas fa-user-md"></i>
+                                    </div>
+                                    <h3 class="team-name">Dr. Anica</h3>
+                                    <p class="team-role">Core Volunteer</p>
+                                </div>
+                                <div class="team-card">
+                                    <div class="team-icon">
+                                        <i class="fas fa-user-md"></i>
+                                    </div>
+                                    <h3 class="team-name">Dr. Priyanka Thakur</h3>
+                                    <p class="team-role">Core Volunteer</p>
+                                </div>
+                                <div class="team-card">
+                                    <div class="team-icon">
+                                        <i class="fas fa-user-md"></i>
+                                    </div>
+                                    <h3 class="team-name">Dr. Tenzin</h3>
+                                    <p class="team-role">Core Volunteer</p>
+                                </div>
+                                <div class="team-card">
+                                    <div class="team-icon">
+                                        <i class="fas fa-user-md"></i>
+                                    </div>
+                                    <h3 class="team-name">Dr. Nirmadal Agarwal</h3>
+                                    <p class="team-role">Core Volunteer</p>
+                                </div>
+                            </div>
+                            
+                            <!-- Slide 12 -->
+                            <div class="team-slide">
+                                <div class="team-card">
+                                    <div class="team-icon">
+                                        <i class="fas fa-user-md"></i>
+                                    </div>
+                                    <h3 class="team-name">Dr. Meena Naik</h3>
+                                    <p class="team-role">Core Volunteer</p>
+                                </div>
+                                <div class="team-card">
+                                    <div class="team-icon">
+                                        <i class="fas fa-user-md"></i>
+                                    </div>
+                                    <h3 class="team-name">Dr. Priti Arora Dhamija</h3>
+                                    <p class="team-role">Core Volunteer</p>
+                                </div>
+                                <div class="team-card">
+                                    <div class="team-icon">
+                                        <i class="fas fa-user-md"></i>
+                                    </div>
+                                    <h3 class="team-name">Dr. Gurpreet Popli</h3>
+                                    <p class="team-role">Core Volunteer</p>
+                                </div>
+                                <div class="team-card">
+                                    <div class="team-icon">
+                                        <i class="fas fa-users"></i>
+                                    </div>
+                                    <h3 class="team-name">Dr. Tanuja</h3>
+                                    <p class="team-role">Core Volunteer</p>
+                                </div>
+                                <div class="team-card">
+                                    <div class="team-icon">
+                                        <i class="fas fa-user-md"></i>
+                                    </div>
+                                    <h3 class="team-name">Dr. Murali</h3>
+                                    <p class="team-role">Core Volunteer</p>
+                                </div>
+                                <div class="team-card">
+                                    <div class="team-icon">
+                                        <i class="fas fa-user-md"></i>
+                                    </div>
+                                    <h3 class="team-name">Dr. Daniel</h3>
+                                    <p class="team-role">Core Volunteer</p>
+                                </div>
+                            </div>
+                            
+                            <!-- Slide 13 (Final) -->
+                            <div class="team-slide">
+                                <div class="team-card">
+                                    <div class="team-icon">
+                                        <i class="fas fa-user-md"></i>
+                                    </div>
+                                    <h3 class="team-name">Dr. Nirmala Pipera</h3>
+                                    <p class="team-role">Core Volunteer</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="team-btn next-btn" onclick="moveTeamSlider(1)">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">What Our Supporters Say</h2>
+            </div>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="testimonial-text">"Supporting Okti Foundation has been incredibly rewarding. Their transparency and direct impact reports give us confidence in every contribution we make."</p>
+                    <div class="testimonial-author">
+                        <div class="author-info">
+                            <span class="author-name">Harbans Lal Bathla</span>
+                            <span class="author-title">Long-term Supporter</span>
+                        </div>
+                        <span class="support-duration">Supporting for 15+ years</span>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="testimonial-text">"We have been donating to the Okti foundation for several years now. Having Sewa Bhawna for those in need is the cornerstone of humanity."</p>
+                    <div class="testimonial-author">
+                        <div class="author-info">
+                            <span class="author-name">Ms. Sudesh Arora</span>
+                            <span class="author-title">Long-term Supporter</span>
+                        </div>
+                        <span class="support-duration">Supporting for 6 years</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Join Community Section -->
+    <section class="join-community">
+        <div class="container">
+            <div class="community-content">
+                <h2 class="community-title">Join Our Community of Changemakers</h2>
+                <p class="community-subtitle">Become part of a growing community committed to transforming healthcare access in rural India.</p>
+                <a href="#make-donation" class="community-btn">Start Supporting Today</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <div class="footer-logo">
+                        <img src="Logo Footer.png" alt="Okti Foundation" class="footer-logo-img">
+                    </div>
+                    <p class="footer-mission">Reaching the unreached with equitable healthcare, empowering women, and building community health models since 2009.</p>
+                    <div class="social-icons">
+                        <a href="https://www.linkedin.com/posts/okti-foundation_gynaecologists-delhi-conference-activity-7371173613552455680-4GA4?utm_source=share&utm_medium=member_android&rcm=ACoAAEkDxGwBCnIq77D7Iy4ZdTLKcZQa1LRGu4c" target="_blank" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3 class="footer-title">Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="journey.html">Our Journey</a></li>
+                        <li><a href="education.html">Education & Skills</a></li>
+                        <li><a href="donate.html">Donate</a></li>
+                        <li><a href="Anual Reports">Annual Reports</a></li>
+                        <li><a href="policy.html">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3 class="footer-title">Contact Us</h3>
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>6B/7 Raj Narayan Marg, Civil Lines, Delhi - 110054</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <span>drsonalbathla11@gmail.com</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <span>oktifoundationhq@gmail.com</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            <span>+91 9811444563</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p class="copyright">© 2024 Okti Foundation. All rights reserved. | Registered Non-Profit Organization (12A & 80G)</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Donation form functionality
+        let currentAmount = 100000;
+        let donationType = 'one-time';
+
+        // Amount button selection
+        document.querySelectorAll('.amount-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.amount-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                currentAmount = parseInt(this.dataset.amount);
+                updateDonationSummary();
+            });
+        });
+
+        // Custom amount input
+        document.getElementById('customAmount').addEventListener('input', function() {
+            if (this.value) {
+                currentAmount = parseInt(this.value);
+                document.querySelectorAll('.amount-btn').forEach(b => b.classList.remove('active'));
+                updateDonationSummary();
+            }
+        });
+
+        // Donation type selection
+        document.querySelectorAll('input[name="donationType"]').forEach(radio => {
+            radio.addEventListener('change', function() {
+                donationType = this.value;
+                // Update toggle labels
+                document.querySelectorAll('.toggle-label').forEach(label => {
+                    label.classList.remove('active');
+                });
+                this.closest('.toggle-label').classList.add('active');
+                updateDonationSummary();
+            });
+        });
+
+        // Update donation summary
+        function updateDonationSummary() {
+            const summaryAmount = document.getElementById('summaryAmount');
+            const donateButtonText = document.getElementById('donateButtonText');
+            const typeText = donationType === 'one-time' ? 'one-time' : 'monthly';
+            
+            summaryAmount.textContent = `₹${currentAmount.toLocaleString()} (${typeText})`;
+            donateButtonText.textContent = `Donate ₹${currentAmount.toLocaleString()}`;
+        }
+
+
+        // Team carousel functionality
+        let teamCurrentSlide = 0;
+        const totalTeamSlides = 13; // Total number of slides
+
+        function moveTeamSlider(direction) {
+            teamCurrentSlide += direction;
+            if (teamCurrentSlide < 0) teamCurrentSlide = 0;
+            if (teamCurrentSlide >= totalTeamSlides) teamCurrentSlide = totalTeamSlides - 1;
+            
+            const translateX = teamCurrentSlide * 100;
+            const teamTrack = document.getElementById('teamTrack');
+            teamTrack.style.transform = `translateX(-${translateX}%)`;
+        }
+
+        // Testimonials are now in a static grid layout
+
+        // Razorpay Integration
+        const donateBtn = document.getElementById('donateSubmitBtn');
+        
+        donateBtn.addEventListener('click', function() {
+            // Collect form data
+            const formData = {
+                amount: currentAmount,
+                type: donationType,
+                fullName: document.getElementById('fullName').value,
+                phoneNumber: document.getElementById('phoneNumber').value,
+                emailAddress: document.getElementById('emailAddress').value,
+                panNumber: document.getElementById('panNumber').value,
+                address: document.getElementById('address').value,
+                message: document.getElementById('message').value,
+                newsletter: document.getElementById('newsletter').checked
+            };
+            
+            // Validate required fields
+            if (!formData.fullName || !formData.emailAddress || !formData.phoneNumber || !formData.panNumber || !formData.address) {
+                alert('Please fill in all required fields.');
+                return;
+            }
+            
+            // Store form data for payment screens
+            sessionStorage.setItem('donationData', JSON.stringify(formData));
+            
+            // Redirect to payment screen
+            window.location.href = 'payment-screen-1.html';
+        });
+    </script>
+
+    <script>
+        // Mobile navigation functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const burger = document.querySelector('.burger');
+            const nav = document.querySelector('.nav');
+            const body = document.body;
+            
+            if (burger && nav) {
+                burger.addEventListener('click', function() {
+                    nav.classList.toggle('open');
+                    burger.classList.toggle('active');
+                    body.classList.toggle('nav-open');
+                });
+                
+                // Close nav when clicking on links
+                const navLinks = document.querySelectorAll('.nav-link');
+                navLinks.forEach(link => {
+                    link.addEventListener('click', function() {
+                        nav.classList.remove('open');
+                        burger.classList.remove('active');
+                        body.classList.remove('nav-open');
+                    });
+                });
+                
+                // Close nav when clicking outside
+                document.addEventListener('click', function(e) {
+                    if (!nav.contains(e.target) && !burger.contains(e.target)) {
+                        nav.classList.remove('open');
+                        burger.classList.remove('active');
+                        body.classList.remove('nav-open');
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>
