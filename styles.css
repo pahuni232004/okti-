@@ -2126,14 +2126,23 @@ body.nav-open { overflow: hidden; }
     
     .burger.active .line:nth-child(1) {
         transform: rotate(45deg) translate(5px, 5px);
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }
     
     .burger.active .line:nth-child(2) {
         opacity: 0;
+        transform: scaleX(0);
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }
     
     .burger.active .line:nth-child(3) {
         transform: rotate(-45deg) translate(7px, -6px);
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    /* Default burger line transitions */
+    .burger .line {
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }
     
     /* Mobile navigation - dropdown from top, light theme */
@@ -3414,13 +3423,8 @@ body.nav-open { overflow: hidden; }
         border: none;
     }
     
-    /* Hide the regular nav on mobile */
+    /* Mobile navigation - initial state */
     .nav {
-        display: none;
-    }
-    
-    /* Mobile navigation overlay */
-    .nav.open {
         position: fixed;
         top: 0;
         left: 0;
@@ -3431,13 +3435,21 @@ body.nav-open { overflow: hidden; }
         background: #ffffff;
         color: #111827;
         z-index: 998;
-        display: flex;
+        display: none;
         align-items: center;
         justify-content: center;
-        transform: translateY(0);
-        transition: transform 0.35s ease;
-        will-change: transform;
+        transform: translateY(-100%);
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        will-change: transform, opacity;
         overflow-x: hidden;
+        opacity: 0;
+    }
+    
+    /* Mobile navigation - open state */
+    .nav.open {
+        display: flex;
+        transform: translateY(0);
+        opacity: 1;
     }
     
     .nav-list {
@@ -3460,14 +3472,27 @@ body.nav-open { overflow: hidden; }
         color: #111827;
         text-decoration: none;
         font-weight: 500;
-        transition: color 0.3s ease;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        border-radius: 8px;
+        position: relative;
+        overflow: hidden;
     }
     
     .nav-link:hover {
         color: #35BCFF;
+        background: rgba(53, 188, 255, 0.1);
+        transform: translateY(-2px);
     }
     
-    .logo-img { height: 56px; }
+    .nav-link:active {
+        transform: translateY(0);
+    }
+    
+    .logo-img { 
+        height: 56px; 
+        display: block !important;
+        visibility: visible !important;
+    }
     
     /* Hide donate in header; show inside menu */
     .header .donate-btn-header { display: none; }
