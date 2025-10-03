@@ -1,66 +1,14 @@
-/* EMERGENCY BURGER MENU FIX - MUST BE VISIBLE */
-.burger,
-button.burger,
-.header .burger,
-.header-content .burger {
-    display: flex !important;
-    visibility: visible !important;
-    opacity: 1 !important;
-    background: #ffff00 !important;
-    border: 5px solid #ff0000 !important;
-    width: 80px !important;
-    height: 80px !important;
-    position: absolute !important;
-    right: 10px !important;
-    top: 50% !important;
-    transform: translateY(-50%) !important;
-    z-index: 99999 !important;
-    flex-direction: column !important;
-    justify-content: center !important;
-    align-items: center !important;
-    box-shadow: 0 0 20px rgba(255, 0, 0, 0.8) !important;
-}
-
-/* Add text label to burger menu */
-.burger::before {
-    content: "MENU" !important;
-    position: absolute !important;
-    top: -25px !important;
-    left: 50% !important;
-    transform: translateX(-50%) !important;
-    color: #ff0000 !important;
-    font-size: 12px !important;
-    font-weight: bold !important;
-    background: #ffff00 !important;
-    padding: 2px 5px !important;
-    border-radius: 3px !important;
-    border: 1px solid #ff0000 !important;
-}
-
-.burger .line,
-button.burger .line,
-.header .burger .line,
-.header-content .burger .line {
-    background: #ff0000 !important;
-    width: 40px !important;
-    height: 6px !important;
-    display: block !important;
-    visibility: visible !important;
-    opacity: 1 !important;
-    margin: 5px 0 !important;
-    border-radius: 3px !important;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3) !important;
-}
+/* Burger menu styles - clean and proper */
 
 /* Timeline row: prevent year captions from wrapping to two rows */
 .timeline, .milestones, .years-row { display: flex; align-items: center; justify-content: space-between; flex-wrap: nowrap; }
 .timeline .year, .milestones .year, .years-row .year { white-space: nowrap; }
 
-/* Mobile burger menu visibility fixes */
+/* Mobile burger menu styles */
 @media (max-width: 900px) {
     .header .burger,
     .burger {
-        display: flex !important;
+        display: flex;
         position: absolute;
         right: 15px;
         top: 50%;
@@ -75,23 +23,18 @@ button.burger .line,
         justify-content: center;
         align-items: center;
         padding: 8px;
-        visibility: visible !important;
-        opacity: 1 !important;
     }
     
     .header .burger .line,
     .burger .line {
-        display: block !important;
+        display: block;
         width: 28px;
         height: 4px;
-        background: #000000 !important;
+        background: #000000;
         margin: 3px 0;
         border-radius: 2px;
         transition: all 0.3s ease;
         transform-origin: center;
-        visibility: visible !important;
-        opacity: 1 !important;
-        box-shadow: none !important;
     }
     
     .header .nav,
@@ -274,7 +217,7 @@ input[type="text"], input[type="email"], input[type="tel"], input[type="number"]
 
 /* Burger menu button */
 .burger {
-    display: none;
+    display: none; /* Hidden by default, shown on mobile */
     width: 40px;
     height: 40px;
     background: none;
@@ -1316,12 +1259,12 @@ body.nav-open { overflow: hidden; }
 .founder-card {
     text-align: center;
     background: white;
-    padding: 0px 0px;
+    padding: 0;
     border-radius: 15px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease;
     overflow: hidden;
-    margin: -10px;
+    margin: 0;
 }
 
 .founder-card:hover {
@@ -1329,15 +1272,12 @@ body.nav-open { overflow: hidden; }
 }
 
 .founder-img {
-    width: 320px;
-    height: 320px;
+    width: 380px;
+    height: 380px;
     border-radius: 10px;
     object-fit: cover;
     object-position: center top;
-    margin-bottom: 0px;
-    margin-top: 0px;
-    margin-left: 0px;
-    margin-right: 0px;
+    margin: 0;
 }
 
 .founder-name {
@@ -2185,7 +2125,7 @@ body.nav-open { overflow: hidden; }
         transition: transform 0.3s ease;
     }
     .burger { 
-        display: flex !important; 
+        display: flex; 
         flex-direction: column;
         justify-content: center;
         align-items: center;
@@ -2201,19 +2141,16 @@ body.nav-open { overflow: hidden; }
         cursor: pointer;
         padding: 8px;
     }
-    /* Make burger lines black on mobile */
+    /* Burger menu lines */
     .burger .line {
-        display: block !important;
+        display: block;
         width: 28px;
         height: 4px;
-        background: #000000 !important;
+        background: #000000;
         border-radius: 2px;
         transition: all 0.3s ease;
         transform-origin: center;
         margin: 3px 0;
-        visibility: visible !important;
-        opacity: 1 !important;
-        box-shadow: none !important;
     }
     
     .burger.active .line:nth-child(1) {
@@ -3504,16 +3441,7 @@ body.nav-open { overflow: hidden; }
         align-items: center; 
     }
     
-    .burger { 
-        display: flex !important;
-        position: relative;
-        z-index: 1002;
-        margin-left: auto;
-        cursor: pointer;
-        padding: 8px;
-        background: none;
-        border: none;
-    }
+    /* Burger menu styles are defined in the earlier media query */
     
     /* Mobile navigation - initial state */
     .nav {
@@ -4442,28 +4370,28 @@ body.nav-open { overflow: hidden; }
     }
     
     .founder-card {
-        padding: 0px 0px !important;
-        margin: -10px !important;
+        padding: 0;
+        margin: 0;
         overflow: hidden;
     }
     
     .founder-img {
-        width: 350px !important;
-        height: 350px !important;
-        margin: 0px !important;
-        border-radius: 0px !important;
+        width: 380px;
+        height: 380px;
+        margin: 0;
+        border-radius: 10px;
     }
     
     .founder-name {
-        margin-top: 0px !important;
-        margin-bottom: 0px !important;
-        padding-top: 2px !important;
+        margin-top: 0;
+        margin-bottom: 0;
+        padding-top: 2px;
     }
     
     .founder-position {
-        margin-top: 0px !important;
-        margin-bottom: 0px !important;
-        padding-bottom: 2px !important;
+        margin-top: 0;
+        margin-bottom: 0;
+        padding-bottom: 2px;
     }
     
     .health-content {
@@ -4787,8 +4715,8 @@ body.nav-open { overflow: hidden; }
     }
     
     .founder-card {
-        padding: 0px 0px;
-        margin: -5px;
+        padding: 0;
+        margin: 0;
         overflow: hidden;
     }
     
@@ -6057,130 +5985,36 @@ body.nav-open { overflow: hidden; }
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
 }
 
-/* ULTRA VISIBLE BURGER MENU - FORCE VISIBILITY */
-@media (max-width: 900px) {
-    .header .burger,
-    .burger {
-        background: #ffff00 !important;
-        border: 5px solid #ff0000 !important;
-        border-radius: 12px !important;
-        padding: 15px !important;
-        width: 80px !important;
-        height: 80px !important;
-        display: flex !important;
-        visibility: visible !important;
-        opacity: 1 !important;
-        z-index: 99999 !important;
-        position: absolute !important;
-        right: 10px !important;
-        top: 50% !important;
-        transform: translateY(-50%) !important;
-        flex-direction: column !important;
-        justify-content: center !important;
-        align-items: center !important;
-        box-shadow: 0 0 20px rgba(255, 0, 0, 0.8) !important;
-    }
-    
-    .header .burger .line,
-    .burger .line {
-        background: #ff0000 !important;
-        display: block !important;
-        visibility: visible !important;
-        opacity: 1 !important;
-        width: 40px !important;
-        height: 6px !important;
-        margin: 5px 0 !important;
-        border-radius: 3px !important;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3) !important;
-        border: none !important;
-    }
-}
+/* Clean burger menu styles for mobile */
 
-/* ADDITIONAL OVERRIDE FOR ALL SCREENS */
-.burger,
-button.burger,
-.header .burger,
-.header-content .burger {
-    background: #ffff00 !important;
-    border: 5px solid #ff0000 !important;
-    width: 80px !important;
-    height: 80px !important;
-    display: flex !important;
-    z-index: 99999 !important;
-    position: absolute !important;
-    right: 10px !important;
-    top: 50% !important;
-    transform: translateY(-50%) !important;
-    visibility: visible !important;
-    opacity: 1 !important;
-    flex-direction: column !important;
-    justify-content: center !important;
-    align-items: center !important;
-    box-shadow: 0 0 20px rgba(255, 0, 0, 0.8) !important;
-}
-
-.burger .line,
-button.burger .line,
-.header .burger .line,
-.header-content .burger .line {
-    background: #ff0000 !important;
-    width: 40px !important;
-    height: 6px !important;
-    display: block !important;
-    visibility: visible !important;
-    opacity: 1 !important;
-    margin: 5px 0 !important;
-    border-radius: 3px !important;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3) !important;
-}
-
-/* FORCE BURGER VISIBILITY ON ALL DEVICES */
-@media (min-width: 1px) {
-    .burger,
-    button.burger {
-        display: flex !important;
-        visibility: visible !important;
-        opacity: 1 !important;
-        background: #ffff00 !important;
-        border: 5px solid #ff0000 !important;
-        width: 80px !important;
-        height: 80px !important;
-        position: absolute !important;
-        right: 10px !important;
-        top: 50% !important;
-        transform: translateY(-50%) !important;
-        z-index: 99999 !important;
-    }
-}
-
-/* FORCE FOUNDER IMAGES TO BE LARGE WITH MINIMAL WHITE SPACE */
+/* Founder images and cards - clean styling */
 .founder-img {
-    width: 350px !important;
-    height: 350px !important;
-    margin: 0px !important;
-    border-radius: 10px !important;
-    object-fit: cover !important;
-    object-position: center top !important;
+    width: 380px;
+    height: 380px;
+    margin: 0;
+    border-radius: 10px;
+    object-fit: cover;
+    object-position: center top;
 }
 
 .founder-card {
-    padding: 0px 0px !important;
-    margin: -10px !important;
-    overflow: hidden !important;
-    border-radius: 15px !important;
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
+    border-radius: 15px;
 }
 
 .founder-name {
-    margin-top: 2px !important;
-    margin-bottom: 0px !important;
-    font-size: 1.4rem !important;
+    margin-top: 2px;
+    margin-bottom: 0;
+    font-size: 1.4rem;
 }
 
 .founder-position {
-    margin-top: 0px !important;
-    margin-bottom: 2px !important;
+    margin-top: 0;
+    margin-bottom: 2px;
 }
 
 .other-founders {
-    gap: 5px !important;
+    gap: 5px;
 }
