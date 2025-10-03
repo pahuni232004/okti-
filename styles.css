@@ -1277,7 +1277,7 @@ body.nav-open { overflow: hidden; }
     border-radius: 10px;
     object-fit: cover;
     object-position: center top;
-    margin: 0;
+    margin: 5px;
 }
 
 .founder-name {
@@ -4378,7 +4378,7 @@ body.nav-open { overflow: hidden; }
     .founder-img {
         width: 380px;
         height: 380px;
-        margin: 0;
+        margin: 5px;
         border-radius: 10px;
     }
     
@@ -5991,7 +5991,7 @@ body.nav-open { overflow: hidden; }
 .founder-img {
     width: 380px;
     height: 380px;
-    margin: 0;
+    margin: 5px;
     border-radius: 10px;
     object-fit: cover;
     object-position: center top;
