@@ -1,3 +1,57 @@
+/* EMERGENCY BURGER MENU FIX - MUST BE VISIBLE */
+.burger,
+button.burger,
+.header .burger,
+.header-content .burger {
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    background: #ffff00 !important;
+    border: 5px solid #ff0000 !important;
+    width: 80px !important;
+    height: 80px !important;
+    position: absolute !important;
+    right: 10px !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    z-index: 99999 !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    align-items: center !important;
+    box-shadow: 0 0 20px rgba(255, 0, 0, 0.8) !important;
+}
+
+/* Add text label to burger menu */
+.burger::before {
+    content: "MENU" !important;
+    position: absolute !important;
+    top: -25px !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    color: #ff0000 !important;
+    font-size: 12px !important;
+    font-weight: bold !important;
+    background: #ffff00 !important;
+    padding: 2px 5px !important;
+    border-radius: 3px !important;
+    border: 1px solid #ff0000 !important;
+}
+
+.burger .line,
+button.burger .line,
+.header .burger .line,
+.header-content .burger .line {
+    background: #ff0000 !important;
+    width: 40px !important;
+    height: 6px !important;
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    margin: 5px 0 !important;
+    border-radius: 3px !important;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3) !important;
+}
+
 /* Timeline row: prevent year captions from wrapping to two rows */
 .timeline, .milestones, .years-row { display: flex; align-items: center; justify-content: space-between; flex-wrap: nowrap; }
 .timeline .year, .milestones .year, .years-row .year { white-space: nowrap; }
@@ -1253,7 +1307,7 @@ body.nav-open { overflow: hidden; }
 .other-founders {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 30px;
+    gap: 10px;
     width: 100%;
     max-width: 600px;
     margin-top: 20px;
@@ -1266,6 +1320,8 @@ body.nav-open { overflow: hidden; }
     border-radius: 15px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease;
+    overflow: hidden;
+    margin: -10px;
 }
 
 .founder-card:hover {
@@ -1273,20 +1329,23 @@ body.nav-open { overflow: hidden; }
 }
 
 .founder-img {
-    width: 280px;
-    height: 280px;
+    width: 320px;
+    height: 320px;
     border-radius: 10px;
     object-fit: cover;
     object-position: center top;
     margin-bottom: 0px;
+    margin-top: 0px;
+    margin-left: 0px;
+    margin-right: 0px;
 }
 
 .founder-name {
     font-size: 1.4rem;
     color: #2c3e50;
     font-weight: 700;
-    margin-bottom: 2px;
-    margin-top: 5px;
+    margin-bottom: 0px;
+    margin-top: 2px;
 }
 
 .founder-position {
@@ -4379,11 +4438,32 @@ body.nav-open { overflow: hidden; }
     }
     
     .other-founders {
-        gap: 20px;
+        gap: 5px;
     }
     
     .founder-card {
-        padding: 0px 0px;
+        padding: 0px 0px !important;
+        margin: -10px !important;
+        overflow: hidden;
+    }
+    
+    .founder-img {
+        width: 350px !important;
+        height: 350px !important;
+        margin: 0px !important;
+        border-radius: 0px !important;
+    }
+    
+    .founder-name {
+        margin-top: 0px !important;
+        margin-bottom: 0px !important;
+        padding-top: 2px !important;
+    }
+    
+    .founder-position {
+        margin-top: 0px !important;
+        margin-bottom: 0px !important;
+        padding-bottom: 2px !important;
     }
     
     .health-content {
@@ -4708,6 +4788,8 @@ body.nav-open { overflow: hidden; }
     
     .founder-card {
         padding: 0px 0px;
+        margin: -5px;
+        overflow: hidden;
     }
     
     .contact-card {
@@ -6015,18 +6097,90 @@ body.nav-open { overflow: hidden; }
 }
 
 /* ADDITIONAL OVERRIDE FOR ALL SCREENS */
-.burger {
+.burger,
+button.burger,
+.header .burger,
+.header-content .burger {
     background: #ffff00 !important;
     border: 5px solid #ff0000 !important;
     width: 80px !important;
     height: 80px !important;
     display: flex !important;
     z-index: 99999 !important;
+    position: absolute !important;
+    right: 10px !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    align-items: center !important;
+    box-shadow: 0 0 20px rgba(255, 0, 0, 0.8) !important;
 }
 
-.burger .line {
+.burger .line,
+button.burger .line,
+.header .burger .line,
+.header-content .burger .line {
     background: #ff0000 !important;
     width: 40px !important;
     height: 6px !important;
     display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    margin: 5px 0 !important;
+    border-radius: 3px !important;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3) !important;
+}
+
+/* FORCE BURGER VISIBILITY ON ALL DEVICES */
+@media (min-width: 1px) {
+    .burger,
+    button.burger {
+        display: flex !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        background: #ffff00 !important;
+        border: 5px solid #ff0000 !important;
+        width: 80px !important;
+        height: 80px !important;
+        position: absolute !important;
+        right: 10px !important;
+        top: 50% !important;
+        transform: translateY(-50%) !important;
+        z-index: 99999 !important;
+    }
+}
+
+/* FORCE FOUNDER IMAGES TO BE LARGE WITH MINIMAL WHITE SPACE */
+.founder-img {
+    width: 350px !important;
+    height: 350px !important;
+    margin: 0px !important;
+    border-radius: 10px !important;
+    object-fit: cover !important;
+    object-position: center top !important;
+}
+
+.founder-card {
+    padding: 0px 0px !important;
+    margin: -10px !important;
+    overflow: hidden !important;
+    border-radius: 15px !important;
+}
+
+.founder-name {
+    margin-top: 2px !important;
+    margin-bottom: 0px !important;
+    font-size: 1.4rem !important;
+}
+
+.founder-position {
+    margin-top: 0px !important;
+    margin-bottom: 2px !important;
+}
+
+.other-founders {
+    gap: 5px !important;
 }
