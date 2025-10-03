@@ -1259,12 +1259,12 @@ body.nav-open { overflow: hidden; }
 .founder-card {
     text-align: center;
     background: white;
-    padding: 0;
+    padding: 10px;
     border-radius: 15px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease;
     overflow: hidden;
-    margin: 0;
+    margin: 10px;
 }
 
 .founder-card:hover {
@@ -1277,8 +1277,8 @@ body.nav-open { overflow: hidden; }
     border-radius: 10px;
     object-fit: cover;
     object-position: center top;
-    margin: 10px;
-    padding: 10px;
+    margin: 0;
+    padding: 0;
 }
 
 .founder-name {
@@ -4371,16 +4371,16 @@ body.nav-open { overflow: hidden; }
     }
     
     .founder-card {
-        padding: 0;
-        margin: 0;
+        padding: 10px;
+        margin: 10px;
         overflow: hidden;
     }
     
     .founder-img {
         width: 280px;
         height: 280px;
-        margin: 10px;
-        padding: 10px;
+        margin: 0;
+        padding: 0;
         border-radius: 10px;
     }
     
@@ -4717,8 +4717,8 @@ body.nav-open { overflow: hidden; }
     }
     
     .founder-card {
-        padding: 0;
-        margin: 0;
+        padding: 10px;
+        margin: 10px;
         overflow: hidden;
     }
     
@@ -5993,16 +5993,16 @@ body.nav-open { overflow: hidden; }
 .founder-img {
     width: 280px;
     height: 280px;
-    margin: 10px;
-    padding: 10px;
+    margin: 0;
+    padding: 0;
     border-radius: 10px;
     object-fit: cover;
     object-position: center top;
 }
 
 .founder-card {
-    padding: 0;
-    margin: 0;
+    padding: 10px;
+    margin: 10px;
     overflow: hidden;
     border-radius: 15px;
 }
