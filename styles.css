@@ -1272,12 +1272,12 @@ body.nav-open { overflow: hidden; }
 }
 
 .founder-img {
-    width: 380px;
-    height: 380px;
+    width: 280px;
+    height: 280px;
     border-radius: 10px;
     object-fit: cover;
     object-position: center top;
-    margin: 5px;
+    margin: 2px;
 }
 
 .founder-name {
@@ -4376,9 +4376,9 @@ body.nav-open { overflow: hidden; }
     }
     
     .founder-img {
-        width: 380px;
-        height: 380px;
-        margin: 5px;
+        width: 280px;
+        height: 280px;
+        margin: 2px;
         border-radius: 10px;
     }
     
@@ -5989,9 +5989,9 @@ body.nav-open { overflow: hidden; }
 
 /* Founder images and cards - clean styling */
 .founder-img {
-    width: 380px;
-    height: 380px;
-    margin: 5px;
+    width: 280px;
+    height: 280px;
+    margin: 2px;
     border-radius: 10px;
     object-fit: cover;
     object-position: center top;
