@@ -32,7 +32,14 @@ exports.handler = async (event, context) => {
     }
 
     // Parse request body
-    const { razorpay_order_id, razorpay_payment_id, razorpay_signature } = JSON.parse(event.body);
+    const { 
+      razorpay_order_id, 
+      razorpay_payment_id, 
+      razorpay_signature,
+      donorDetails,
+      donationAmount,
+      donationType
+    } = JSON.parse(event.body);
     
     if (!razorpay_order_id || !razorpay_payment_id || !razorpay_signature) {
       return {
@@ -53,6 +60,33 @@ exports.handler = async (event, context) => {
     const isAuthentic = expectedSignature === razorpay_signature;
 
     if (isAuthentic) {
+      // Send email notification if donor details are provided
+      if (donorDetails && donationAmount) {
+        try {
+          const emailResponse = await fetch(`${event.headers.host}/.netlify/functions/send-donation-email`, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              donorDetails,
+              paymentDetails: {
+                razorpay_payment_id,
+                razorpay_order_id,
+                razorpay_signature
+              },
+              donationAmount,
+              donationType
+            })
+          });
+          
+          console.log('Email notification sent:', emailResponse.ok);
+        } catch (emailError) {
+          console.error('Failed to send email notification:', emailError);
+          // Don't fail the payment verification if email fails
+        }
+      }
+
       return {
         statusCode: 200,
         headers,
