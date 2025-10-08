@@ -63,7 +63,8 @@ exports.handler = async (event, context) => {
       // Send email notification if donor details are provided
       if (donorDetails && donationAmount) {
         try {
-          const emailResponse = await fetch(`${event.headers.host}/.netlify/functions/send-donation-email`, {
+          console.log('Attempting to send email notification...');
+          const emailResponse = await fetch(`https://${event.headers.host}/.netlify/functions/send-donation-email`, {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
@@ -80,7 +81,16 @@ exports.handler = async (event, context) => {
             })
           });
           
-          console.log('Email notification sent:', emailResponse.ok);
+          const emailResult = await emailResponse.json();
+          console.log('Email notification result:', {
+            ok: emailResponse.ok,
+            status: emailResponse.status,
+            result: emailResult
+          });
+          
+          if (!emailResponse.ok) {
+            console.error('Email notification failed:', emailResult);
+          }
         } catch (emailError) {
           console.error('Failed to send email notification:', emailError);
           // Don't fail the payment verification if email fails

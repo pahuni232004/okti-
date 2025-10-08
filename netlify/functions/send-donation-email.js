@@ -18,6 +18,23 @@ exports.handler = async (event, context) => {
   }
 
   try {
+    // Check if environment variables are set
+    if (!process.env.EMAIL_USER || !process.env.EMAIL_APP_PASSWORD) {
+      console.error('Missing email credentials');
+      return {
+        statusCode: 500,
+        headers,
+        body: JSON.stringify({
+          error: 'Email service configuration error',
+          message: 'EMAIL_USER and EMAIL_APP_PASSWORD environment variables must be set',
+          debug: {
+            hasEmailUser: !!process.env.EMAIL_USER,
+            hasEmailPassword: !!process.env.EMAIL_APP_PASSWORD
+          }
+        })
+      };
+    }
+
     // Parse request body
     const { 
       donorDetails, 
@@ -25,6 +42,12 @@ exports.handler = async (event, context) => {
       donationAmount,
       donationType 
     } = JSON.parse(event.body);
+
+    console.log('Sending donation email:', {
+      donorName: donorDetails?.fullName,
+      donationAmount,
+      hasPaymentDetails: !!paymentDetails
+    });
 
     // Create email transporter using Gmail SMTP
     const transporter = nodemailer.createTransporter({
