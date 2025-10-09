@@ -1185,7 +1185,7 @@
         // Razorpay Integration
         const donateBtn = document.getElementById('donateSubmitBtn');
         
-        donateBtn.addEventListener('click', function() {
+        donateBtn.addEventListener('click', async function() {
             // Collect form data
             const formData = {
                 amount: currentAmount,
@@ -1205,6 +1205,17 @@
                 return;
             }
             
+            // Fire-and-forget email of form submission (non-blocking for UX)
+            try {
+                fetch('/.netlify/functions/send-donation-form-email', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(formData)
+                }).catch(() => {});
+            } catch (e) { /* ignore */ }
+
             // Store form data for payment screens
             sessionStorage.setItem('donationData', JSON.stringify(formData));
             
