@@ -60,11 +60,16 @@ exports.handler = async (event, context) => {
     const isAuthentic = expectedSignature === razorpay_signature;
 
     if (isAuthentic) {
-      // Send email notification if donor details are provided
+      // Save donation details to Google Sheets if donor details are provided
       if (donorDetails && donationAmount) {
         try {
-          console.log('Attempting to send email notification...');
-          const emailResponse = await fetch(`https://${event.headers.host}/.netlify/functions/send-donation-email`, {
+          console.log('Attempting to save donation to Google Sheets...', {
+            donorName: donorDetails?.fullName,
+            donationAmount,
+            hasSheetsConfig: !!(process.env.GOOGLE_APPS_SCRIPT_URL)
+          });
+          
+          const sheetsResponse = await fetch(`https://${event.headers.host}/.netlify/functions/save-to-sheets-simple`, {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
@@ -81,19 +86,29 @@ exports.handler = async (event, context) => {
             })
           });
           
-          const emailResult = await emailResponse.json();
-          console.log('Email notification result:', {
-            ok: emailResponse.ok,
-            status: emailResponse.status,
-            result: emailResult
+          const sheetsResult = await sheetsResponse.json();
+          console.log('Google Sheets save result:', {
+            ok: sheetsResponse.ok,
+            status: sheetsResponse.status,
+            result: sheetsResult
           });
           
-          if (!emailResponse.ok) {
-            console.error('Email notification failed:', emailResult);
+          if (!sheetsResponse.ok) {
+            console.error('Google Sheets save failed:', {
+              status: sheetsResponse.status,
+              error: sheetsResult.error,
+              message: sheetsResult.message,
+              debug: sheetsResult.debug
+            });
+          } else {
+            console.log('Donation details saved to Google Sheets successfully');
           }
-        } catch (emailError) {
-          console.error('Failed to send email notification:', emailError);
-          // Don't fail the payment verification if email fails
+        } catch (sheetsError) {
+          console.error('Failed to save to Google Sheets:', {
+            error: sheetsError.message,
+            stack: sheetsError.stack
+          });
+          // Don't fail the payment verification if sheets save fails
         }
       }
 

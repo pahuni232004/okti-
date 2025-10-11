@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google Sheets Test - Okti Foundation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #35BCFF;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .test-section {
+            margin: 20px 0;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background: #f9f9f9;
+        }
+        .test-section h3 {
+            margin-top: 0;
+            color: #2c3e50;
+        }
+        button {
+            background: #35BCFF;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 10px 5px;
+        }
+        button:hover {
+            background: #2a9fd8;
+        }
+        button:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+        .result {
+            margin: 15px 0;
+            padding: 15px;
+            border-radius: 5px;
+            font-family: monospace;
+            white-space: pre-wrap;
+        }
+        .success {
+            background: #d4edda;
+            border: 1px solid #c3e6cb;
+            color: #155724;
+        }
+        .error {
+            background: #f8d7da;
+            border: 1px solid #f5c6cb;
+            color: #721c24;
+        }
+        .info {
+            background: #d1ecf1;
+            border: 1px solid #bee5eb;
+            color: #0c5460;
+        }
+        .instructions {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            color: #856404;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+        .data-preview {
+            background: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 5px;
+            padding: 15px;
+            margin: 15px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📊 Google Sheets Integration Test</h1>
+        
+        <div class="instructions">
+            <h3>📋 Setup Instructions</h3>
+            <p><strong>Before testing, make sure you have:</strong></p>
+            <ol>
+                <li>Created a Google Sheets file named "Okti Foundation Donations"</li>
+                <li>Set up Google Apps Script with the provided code</li>
+                <li>Deployed the script as a web app with "Anyone" access</li>
+                <li>Added <code>GOOGLE_APPS_SCRIPT_URL</code> to Netlify environment variables</li>
+                <li>Redeployed the site</li>
+            </ol>
+        </div>
+
+        <div class="test-section">
+            <h3>1. Test Google Sheets Function</h3>
+            <p>This tests if the Google Sheets integration is working.</p>
+            <button onclick="testSheetsFunction()" id="testSheetsBtn">Test Sheets Function</button>
+            <div id="sheetsResult" class="result" style="display: none;"></div>
+        </div>
+
+        <div class="test-section">
+            <h3>2. Test with Sample Donation Data</h3>
+            <p>This simulates a real donation and saves it to your Google Sheets.</p>
+            <button onclick="testSampleDonation()" id="testSampleBtn">Test Sample Donation</button>
+            <div id="sampleResult" class="result" style="display: none;"></div>
+        </div>
+
+        <div class="test-section">
+            <h3>3. Check Configuration</h3>
+            <p>This checks if the Google Sheets configuration is properly set up.</p>
+            <button onclick="checkConfiguration()" id="checkConfigBtn">Check Configuration</button>
+            <div id="configResult" class="result" style="display: none;"></div>
+        </div>
+
+        <div class="test-section">
+            <h3>📊 Expected Results</h3>
+            <p>If everything is working correctly, you should see in your Google Sheets:</p>
+            <div class="data-preview">
+                <strong>Sample data that will be added:</strong><br>
+                • Date & Time: Current timestamp<br>
+                • Donor Name: Test Donor<br>
+                • Email: test@example.com<br>
+                • Phone: +91 98765 43210<br>
+                • Donation Amount: ₹1,000<br>
+                • Donation Type: one-time<br>
+                • Status: Completed
+            </div>
+        </div>
+
+        <div class="test-section">
+            <h3>🔧 Troubleshooting</h3>
+            <p><strong>If you see errors:</strong></p>
+            <ul>
+                <li><strong>"Google Sheets configuration error"</strong> → Check environment variable</li>
+                <li><strong>"Failed to save donation details"</strong> → Check Apps Script deployment</li>
+                <li><strong>"Network error"</strong> → Check Apps Script URL</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        async function testSheetsFunction() {
+            const btn = document.getElementById('testSheetsBtn');
+            const result = document.getElementById('sheetsResult');
+            
+            btn.disabled = true;
+            btn.textContent = 'Testing...';
+            result.style.display = 'block';
+            result.className = 'result info';
+            result.textContent = 'Testing Google Sheets function...';
+            
+            try {
+                const response = await fetch('/.netlify/functions/save-to-sheets-simple', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        donorDetails: {
+                            fullName: 'Test Function',
+                            emailAddress: 'test@function.com',
+                            phoneNumber: '+91 99999 99999',
+                            panNumber: 'TEST1234F',
+                            address: 'Test Function Address',
+                            message: 'This is a test of the Google Sheets function',
+                            newsletter: true
+                        },
+                        paymentDetails: {
+                            razorpay_payment_id: 'pay_test_function',
+                            razorpay_order_id: 'order_test_function',
+                            razorpay_signature: 'test_signature'
+                        },
+                        donationAmount: 500,
+                        donationType: 'one-time'
+                    })
+                });
+                
+                const data = await response.json();
+                
+                if (response.ok) {
+                    result.className = 'result success';
+                    result.textContent = `✅ SUCCESS!\n\n${JSON.stringify(data, null, 2)}`;
+                } else {
+                    result.className = 'result error';
+                    result.textContent = `❌ ERROR!\n\n${JSON.stringify(data, null, 2)}`;
+                }
+            } catch (error) {
+                result.className = 'result error';
+                result.textContent = `❌ NETWORK ERROR!\n\n${error.message}`;
+            } finally {
+                btn.disabled = false;
+                btn.textContent = 'Test Sheets Function';
+            }
+        }
+
+        async function testSampleDonation() {
+            const btn = document.getElementById('testSampleBtn');
+            const result = document.getElementById('sampleResult');
+            
+            btn.disabled = true;
+            btn.textContent = 'Testing...';
+            result.style.display = 'block';
+            result.className = 'result info';
+            result.textContent = 'Testing sample donation...';
+            
+            try {
+                const response = await fetch('/.netlify/functions/save-to-sheets-simple', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        donorDetails: {
+                            fullName: 'Sample Donor',
+                            emailAddress: 'sample@donor.com',
+                            phoneNumber: '+91 98765 43210',
+                            panNumber: 'ABCDE1234F',
+                            address: '123 Sample Street, Sample City, 123456',
+                            message: 'This is a sample donation for testing the Google Sheets integration',
+                            newsletter: true
+                        },
+                        paymentDetails: {
+                            razorpay_payment_id: 'pay_sample123456',
+                            razorpay_order_id: 'order_sample123456',
+                            razorpay_signature: 'sample_signature_123'
+                        },
+                        donationAmount: 2500,
+                        donationType: 'monthly'
+                    })
+                });
+                
+                const data = await response.json();
+                
+                if (response.ok) {
+                    result.className = 'result success';
+                    result.textContent = `✅ SUCCESS!\n\nSample donation saved to Google Sheets!\n\n${JSON.stringify(data, null, 2)}`;
+                } else {
+                    result.className = 'result error';
+                    result.textContent = `❌ ERROR!\n\n${JSON.stringify(data, null, 2)}`;
+                }
+            } catch (error) {
+                result.className = 'result error';
+                result.textContent = `❌ NETWORK ERROR!\n\n${error.message}`;
+            } finally {
+                btn.disabled = false;
+                btn.textContent = 'Test Sample Donation';
+            }
+        }
+
+        async function checkConfiguration() {
+            const btn = document.getElementById('checkConfigBtn');
+            const result = document.getElementById('configResult');
+            
+            btn.disabled = true;
+            btn.textContent = 'Checking...';
+            result.style.display = 'block';
+            result.className = 'result info';
+            result.textContent = 'Checking Google Sheets configuration...';
+            
+            try {
+                const response = await fetch('/.netlify/functions/save-to-sheets-simple', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({})
+                });
+                
+                const data = await response.json();
+                
+                if (data.error && data.error.includes('configuration')) {
+                    result.className = 'result error';
+                    result.textContent = `❌ CONFIGURATION ISSUE!\n\n${JSON.stringify(data, null, 2)}`;
+                } else if (data.success) {
+                    result.className = 'result success';
+                    result.textContent = `✅ CONFIGURATION OK!\n\n${JSON.stringify(data, null, 2)}`;
+                } else {
+                    result.className = 'result info';
+                    result.textContent = `Configuration Check:\n\n${JSON.stringify(data, null, 2)}`;
+                }
+            } catch (error) {
+                result.className = 'result error';
+                result.textContent = `❌ NETWORK ERROR!\n\n${error.message}`;
+            } finally {
+                btn.disabled = false;
+                btn.textContent = 'Check Configuration';
+            }
+        }
+    </script>
+</body>
+</html>

@@ -18,18 +18,25 @@ exports.handler = async (event, context) => {
   }
 
   try {
+    console.log('Email function called with environment check:', {
+      hasEmailUser: !!process.env.EMAIL_USER,
+      hasEmailPassword: !!process.env.EMAIL_APP_PASSWORD,
+      emailUserPrefix: process.env.EMAIL_USER ? process.env.EMAIL_USER.substring(0, 5) + '...' : 'not set'
+    });
+
     // Check if environment variables are set
     if (!process.env.EMAIL_USER || !process.env.EMAIL_APP_PASSWORD) {
-      console.error('Missing email credentials');
+      console.error('Missing email credentials - environment variables not set');
       return {
         statusCode: 500,
         headers,
         body: JSON.stringify({
           error: 'Email service configuration error',
-          message: 'EMAIL_USER and EMAIL_APP_PASSWORD environment variables must be set',
+          message: 'EMAIL_USER and EMAIL_APP_PASSWORD environment variables must be set in Netlify',
           debug: {
             hasEmailUser: !!process.env.EMAIL_USER,
-            hasEmailPassword: !!process.env.EMAIL_APP_PASSWORD
+            hasEmailPassword: !!process.env.EMAIL_APP_PASSWORD,
+            instructions: 'Go to Netlify Dashboard → Site Settings → Environment Variables and add EMAIL_USER and EMAIL_APP_PASSWORD'
           }
         })
       };

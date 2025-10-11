@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email Test - Okti Foundation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #35BCFF;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .test-section {
+            margin: 20px 0;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background: #f9f9f9;
+        }
+        .test-section h3 {
+            margin-top: 0;
+            color: #2c3e50;
+        }
+        button {
+            background: #35BCFF;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 10px 5px;
+        }
+        button:hover {
+            background: #2a9fd8;
+        }
+        button:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+        .result {
+            margin: 15px 0;
+            padding: 15px;
+            border-radius: 5px;
+            font-family: monospace;
+            white-space: pre-wrap;
+        }
+        .success {
+            background: #d4edda;
+            border: 1px solid #c3e6cb;
+            color: #155724;
+        }
+        .error {
+            background: #f8d7da;
+            border: 1px solid #f5c6cb;
+            color: #721c24;
+        }
+        .info {
+            background: #d1ecf1;
+            border: 1px solid #bee5eb;
+            color: #0c5460;
+        }
+        .instructions {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            color: #856404;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🧪 Email System Test</h1>
+        
+        <div class="instructions">
+            <h3>📋 Setup Instructions</h3>
+            <p><strong>Before testing, make sure you have:</strong></p>
+            <ol>
+                <li>Set up Gmail App Password (16 characters)</li>
+                <li>Added environment variables to Netlify:
+                    <ul>
+                        <li><code>EMAIL_USER=your-gmail@gmail.com</code></li>
+                        <li><code>EMAIL_APP_PASSWORD=your-app-password</code></li>
+                    </ul>
+                </li>
+                <li>Redeployed the site after adding variables</li>
+            </ol>
+        </div>
+
+        <div class="test-section">
+            <h3>1. Test Basic Email Function</h3>
+            <p>This tests if the email function is working with your environment variables.</p>
+            <button onclick="testBasicEmail()" id="testBasicBtn">Test Email Function</button>
+            <div id="basicResult" class="result" style="display: none;"></div>
+        </div>
+
+        <div class="test-section">
+            <h3>2. Test Donation Email</h3>
+            <p>This simulates a real donation email with sample data.</p>
+            <button onclick="testDonationEmail()" id="testDonationBtn">Test Donation Email</button>
+            <div id="donationResult" class="result" style="display: none;"></div>
+        </div>
+
+        <div class="test-section">
+            <h3>3. Check Environment Variables</h3>
+            <p>This checks if the environment variables are properly configured.</p>
+            <button onclick="checkEnvironment()" id="checkEnvBtn">Check Environment</button>
+            <div id="envResult" class="result" style="display: none;"></div>
+        </div>
+
+        <div class="test-section">
+            <h3>📧 Expected Results</h3>
+            <p>If everything is working correctly, you should receive emails at <strong>oktifoundationhq@gmail.com</strong> with:</p>
+            <ul>
+                <li>Test email from the basic function</li>
+                <li>Sample donation email with donor details</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        async function testBasicEmail() {
+            const btn = document.getElementById('testBasicBtn');
+            const result = document.getElementById('basicResult');
+            
+            btn.disabled = true;
+            btn.textContent = 'Testing...';
+            result.style.display = 'block';
+            result.className = 'result info';
+            result.textContent = 'Testing email function...';
+            
+            try {
+                const response = await fetch('/.netlify/functions/test-email', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({})
+                });
+                
+                const data = await response.json();
+                
+                if (response.ok) {
+                    result.className = 'result success';
+                    result.textContent = `✅ SUCCESS!\n\n${JSON.stringify(data, null, 2)}`;
+                } else {
+                    result.className = 'result error';
+                    result.textContent = `❌ ERROR!\n\n${JSON.stringify(data, null, 2)}`;
+                }
+            } catch (error) {
+                result.className = 'result error';
+                result.textContent = `❌ NETWORK ERROR!\n\n${error.message}`;
+            } finally {
+                btn.disabled = false;
+                btn.textContent = 'Test Email Function';
+            }
+        }
+
+        async function testDonationEmail() {
+            const btn = document.getElementById('testDonationBtn');
+            const result = document.getElementById('donationResult');
+            
+            btn.disabled = true;
+            btn.textContent = 'Testing...';
+            result.style.display = 'block';
+            result.className = 'result info';
+            result.textContent = 'Testing donation email...';
+            
+            try {
+                const testData = {
+                    donorDetails: {
+                        fullName: 'Test Donor',
+                        emailAddress: 'test@example.com',
+                        phoneNumber: '+91 98765 43210',
+                        panNumber: 'ABCDE1234F',
+                        address: '123 Test Street, Test City',
+                        message: 'This is a test donation email',
+                        newsletter: true
+                    },
+                    paymentDetails: {
+                        razorpay_payment_id: 'pay_test123456',
+                        razorpay_order_id: 'order_test123456',
+                        razorpay_signature: 'test_signature'
+                    },
+                    donationAmount: 1000,
+                    donationType: 'one-time'
+                };
+
+                const response = await fetch('/.netlify/functions/send-donation-email', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(testData)
+                });
+                
+                const data = await response.json();
+                
+                if (response.ok) {
+                    result.className = 'result success';
+                    result.textContent = `✅ SUCCESS!\n\n${JSON.stringify(data, null, 2)}`;
+                } else {
+                    result.className = 'result error';
+                    result.textContent = `❌ ERROR!\n\n${JSON.stringify(data, null, 2)}`;
+                }
+            } catch (error) {
+                result.className = 'result error';
+                result.textContent = `❌ NETWORK ERROR!\n\n${error.message}`;
+            } finally {
+                btn.disabled = false;
+                btn.textContent = 'Test Donation Email';
+            }
+        }
+
+        async function checkEnvironment() {
+            const btn = document.getElementById('checkEnvBtn');
+            const result = document.getElementById('envResult');
+            
+            btn.disabled = true;
+            btn.textContent = 'Checking...';
+            result.style.display = 'block';
+            result.className = 'result info';
+            result.textContent = 'Checking environment variables...';
+            
+            try {
+                // We can't directly check environment variables from client-side
+                // But we can test if the functions are accessible
+                const response = await fetch('/.netlify/functions/test-email', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({})
+                });
+                
+                const data = await response.json();
+                
+                if (data.debug) {
+                    result.className = 'result info';
+                    result.textContent = `Environment Check:\n\n${JSON.stringify(data.debug, null, 2)}`;
+                } else if (data.error) {
+                    result.className = 'result error';
+                    result.textContent = `Environment Issue:\n\n${JSON.stringify(data, null, 2)}`;
+                } else {
+                    result.className = 'result success';
+                    result.textContent = `✅ Environment looks good!\n\n${JSON.stringify(data, null, 2)}`;
+                }
+            } catch (error) {
+                result.className = 'result error';
+                result.textContent = `❌ NETWORK ERROR!\n\n${error.message}`;
+            } finally {
+                btn.disabled = false;
+                btn.textContent = 'Check Environment';
+            }
+        }
+    </script>
+</body>
+</html>
