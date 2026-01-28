@@ -7,7 +7,7 @@
     <link rel="icon" type="image/png" href="Logo Header.png">
     <link rel="shortcut icon" type="image/png" href="Logo Header.png">
     <link rel="apple-touch-icon" href="Logo Header.png">
-    <link rel="stylesheet" href="styles.css?v=4">
+    <link rel="stylesheet" href="styles.css?v=6">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
@@ -84,7 +84,7 @@
                         <i class="fas fa-robot"></i>
                     </div>
                     <h3 class="focus-title">Making India AI-enabled</h3>
-                    <p class="focus-description">Providing a smart co-pilot to Indian schools and teachers to improve quality of education and make the classroom transparent.</p>
+                    <p class="focus-description">Providing a smart co-pilot to Indian schools and teachers to improve quality of education and make the classroom transparent with <a href="https://classview.ai/" target="_blank" class="inline-link">ClassView.ai</a></p>
                 </div>
                 
                 <div class="focus-card vision-card">
@@ -104,10 +104,10 @@
         <div class="container">
             <div class="section-header">
                 <h2 class="section-title">Making India AI-enabled</h2>
-                <p class="section-subtitle">Providing a smart co-pilot to Indian schools and teachers to improve quality of education and make the classroom transparent.</p>
+                <p class="section-subtitle">Providing a smart co-pilot to Indian schools and teachers to improve quality of education and make the classroom transparent with <a href="https://classview.ai/" target="_blank" class="inline-link-light">ClassView.ai</a></p>
             </div>
             <div class="ai-education-content">
-                <p class="ai-education-description">Education today must evolve beyond traditional boundaries to meet the needs of a connected world. At Okti Foundation, we are introducing AI-enabled classrooms that act as a smart co-pilot for schools and teachers.</p>
+                <p class="ai-education-description">Education today must evolve beyond traditional boundaries to meet the needs of a connected world. At Okti Foundation, we are introducing AI-enabled classrooms that act as a smart co-pilot for schools and teachers with <a href="https://classview.ai/" target="_blank" class="inline-link-light">ClassView.ai</a></p>
             </div>
             <div class="ai-education-grid">
                 <div class="ai-grid-item">
@@ -277,6 +277,14 @@
         </div>
     </footer>
 
+    <!-- Image Lightbox Modal -->
+    <div id="imageLightbox" class="image-lightbox">
+        <span class="lightbox-close">&times;</span>
+        <span class="lightbox-nav lightbox-prev"><i class="fas fa-chevron-left"></i></span>
+        <span class="lightbox-nav lightbox-next"><i class="fas fa-chevron-right"></i></span>
+        <img class="lightbox-image" id="lightboxImage" src="" alt="Full size image">
+    </div>
+
     <script>
         // Mobile navigation functionality
         document.addEventListener('DOMContentLoaded', function() {
@@ -341,6 +349,67 @@
                 });
                 observer.observe(body, { attributes: true, attributeFilter: ['class'] });
             }
+
+            // Image Lightbox functionality
+            const lightbox = document.getElementById('imageLightbox');
+            const lightboxImage = document.getElementById('lightboxImage');
+            const gridImages = document.querySelectorAll('.ai-grid-img');
+            const closeBtn = document.querySelector('.lightbox-close');
+            const prevBtn = document.querySelector('.lightbox-prev');
+            const nextBtn = document.querySelector('.lightbox-next');
+            let currentImageIndex = 0;
+            const imageArray = Array.from(gridImages);
+
+            // Open lightbox on image click
+            gridImages.forEach((img, index) => {
+                img.style.cursor = 'pointer';
+                img.addEventListener('click', function() {
+                    currentImageIndex = index;
+                    lightboxImage.src = this.src;
+                    lightbox.classList.add('active');
+                    document.body.style.overflow = 'hidden';
+                });
+            });
+
+            // Close lightbox
+            function closeLightbox() {
+                lightbox.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+
+            closeBtn.addEventListener('click', closeLightbox);
+            
+            lightbox.addEventListener('click', function(e) {
+                if (e.target === lightbox) {
+                    closeLightbox();
+                }
+            });
+
+            // Navigate images
+            function showImage(index) {
+                if (index < 0) index = imageArray.length - 1;
+                if (index >= imageArray.length) index = 0;
+                currentImageIndex = index;
+                lightboxImage.src = imageArray[index].src;
+            }
+
+            prevBtn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                showImage(currentImageIndex - 1);
+            });
+
+            nextBtn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                showImage(currentImageIndex + 1);
+            });
+
+            // Keyboard navigation
+            document.addEventListener('keydown', function(e) {
+                if (!lightbox.classList.contains('active')) return;
+                if (e.key === 'Escape') closeLightbox();
+                if (e.key === 'ArrowLeft') showImage(currentImageIndex - 1);
+                if (e.key === 'ArrowRight') showImage(currentImageIndex + 1);
+            });
         });
     </script>
 </body>

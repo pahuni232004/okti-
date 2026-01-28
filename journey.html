@@ -7,7 +7,7 @@
     <link rel="icon" type="image/png" href="Logo Header.png">
     <link rel="shortcut icon" type="image/png" href="Logo Header.png">
     <link rel="apple-touch-icon" href="Logo Header.png">
-    <link rel="stylesheet" href="styles.css?v=4">
+    <link rel="stylesheet" href="styles.css?v=6">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
@@ -487,144 +487,23 @@
     </script>
 
     <script>
-        // Hide any gallery tile if its image fails to load (prevents empty placeholders)
+        // Simple gallery image error handler - just hide broken images
         document.addEventListener('DOMContentLoaded', function() {
             const galleryImages = document.querySelectorAll('.gallery-item img');
-            // Known-good fallback images to fill any gaps (no duplicates)
-            const fallbackImages = [
-                'Image Gallery/0d4383e0b83b0e94cec220ab40e788353d5830d1.jpg',
-                'Image Gallery/1af12f357c9c8849029a2def95e0b9d0a8557029.jpg',
-                'Image Gallery/237ba253bc40ac4c3a903a800f17415b31b42339.jpg',
-                'Image Gallery/44d1586808c6ebb2453dba37116d6a9bba879543.jpg',
-                'Image Gallery/55f0df8471ce0f0b1c57c41f75959eeb3f81c33c.jpg',
-                'Image Gallery/68a4b5823ff23e7c78d3ea73d91eca8dc95cd418.png',
-                'Image Gallery/7a5acd017a398ab4b8a2a361602496a779edb342.jpg',
-                'Image Gallery/89e93cbdb3ab82a56e7003a3ae548f8a2b2e7eaf.jpg',
-                'Image Gallery/9a25ae0b276ac872d0873c21c53351e10a690f8e.jpg',
-                'Image Gallery/9d35d578d3b3ae75f03f36eb81cccec50e9550d7.jpg',
-                'Image Gallery/9ed2527b32212882c2f77602e2c9063b02ae3403.jpg',
-                'Image Gallery/a0745a6ae6892d954672664fd431652d9ecf3572.jpg',
-                'Image Gallery/a2543ba1025fbcecac7b9be7ee9d7994b0db7cbc.jpg',
-                'Image Gallery/a2ecff69991fd193aade7d8f465601d9b3941cb3.jpg',
-                'Image Gallery/a40b7724cd47d538b10e7f978a63c91b90e7a774.jpg',
-                'Image Gallery/aa09ea99141b62ca0ff1df7a34fadcc64d85a07e.jpg',
-                'Image Gallery/c464b64e07f6a25e3e38e8b4b26cc22fbf16eabc.jpg',
-                'Image Gallery/c73d6d64b1cf308e04cb78dc0f46dc6545464dfa.jpg',
-                'Image Gallery/cab7ff9197722bdf1ed569c2fdcc5e1467925d7a.jpg',
-                'Image Gallery/d91a7a5252b9c06018257cc73ad433e4bc51518f.jpg',
-                'Image Gallery/dbaf9c6ad578d546658bf4f53c107f9444fdec99.jpg',
-                'Image Gallery/e36510ad2205a27fa06dc1445954eeccd834e524.jpg',
-                'Image Gallery/e7578e66d3375d2ae89db642a4e8934c6bee90ef.jpg',
-                'Image Gallery/ecf3ce72f7d52404a0c9c1aed6ae8b74c48c9df8.jpg',
-                'Image Gallery/ed109c7df59be9f8627dd8366338c0e46d5ef036.jpg',
-                'Image Gallery/f568a668537adbbfcdff8aee45d97ce011525561.jpg',
-                'Image Gallery/fbabcfd6a082cd03898d6ce2ebe2154d7da2a511.jpg'
-            ];
-
-            // Track which sources are already in use to prevent duplicates
-            const usedSources = new Set();
-            // Pre-mark already loaded images as used
+            
             galleryImages.forEach(function(img) {
-                if (img.complete && img.naturalWidth > 0) {
-                    usedSources.add(img.getAttribute('src'));
-                }
-                img.addEventListener('load', function() {
-                    usedSources.add(img.getAttribute('src'));
+                // Handle image load errors
+                img.addEventListener('error', function() {
+                    const tile = img.closest('.gallery-item');
+                    if (tile) tile.style.display = 'none';
                 });
-            });
-
-            function replaceWithFallback(targetImg) {
-                const tried = new Set();
-                function tryNext() {
-                    if (tried.size >= fallbackImages.length) {
-                        // No more images to try; hide tile
-                        const tile = targetImg.closest('.gallery-item');
-                        if (tile) tile.style.display = 'none';
-                        return;
-                    }
-                    // pick next not-yet-used fallback
-                    let src;
-                    for (let i = 0; i < fallbackImages.length; i += 1) {
-                        const candidate = fallbackImages[i];
-                        if (!usedSources.has(candidate) && !tried.has(candidate)) {
-                            src = candidate;
-                            break;
-                        }
-                    }
-                    if (!src) {
-                        // all candidates used; hide tile
-                        const tile = targetImg.closest('.gallery-item');
-                        if (tile) tile.style.display = 'none';
-                        return;
-                    }
-                    tried.add(src);
-                    const testImg = new Image();
-                    testImg.onload = function() {
-                        targetImg.src = src;
-                        usedSources.add(src);
-                        // ensure tile is visible in case previously hidden
-                        const tile = targetImg.closest('.gallery-item');
-                        if (tile) tile.style.display = '';
-                    };
-                    testImg.onerror = tryNext;
-                    testImg.src = src;
-                }
-                tryNext();
-            }
-
-            galleryImages.forEach(function(img) {
-                const tile = img.closest('.gallery-item');
-                if (tile) tile.style.display = 'none'; // keep hidden until verified loaded
-
-                function showTile() {
-                    if (tile) tile.style.display = '';
-                }
-
-                function handleBroken() {
-                    // Try to fill with a unique fallback first
-                    replaceWithFallback(img);
-                }
-
-                // If already loaded successfully
-                if (img.complete && img.naturalWidth > 0) {
-                    showTile();
-                } else if (img.complete && img.naturalWidth === 0) {
-                    handleBroken();
-                } else {
-                    // attach listeners
-                    img.addEventListener('load', showTile, { once: true });
-                    img.addEventListener('error', handleBroken, { once: true });
-                    // safety timeout: if not loaded in time, consider it broken
-                    setTimeout(function() {
-                        if (!(img.complete && img.naturalWidth > 0)) {
-                            handleBroken();
-                        }
-                    }, 1500);
+                
+                // Check if image already failed to load
+                if (img.complete && img.naturalWidth === 0) {
+                    const tile = img.closest('.gallery-item');
+                    if (tile) tile.style.display = 'none';
                 }
             });
-
-            // After attempting replacements, remove any slide that ends up with empty tiles
-            // and recompute layout to avoid gaps
-            setTimeout(function() {
-                const slides = Array.from(document.querySelectorAll('.gallery-slide'));
-                slides.forEach(function(slide) {
-                    const items = Array.from(slide.querySelectorAll('.gallery-item'));
-                    // Remove any items that remain hidden or broken
-                    items.forEach(function(item) {
-                        const img = item.querySelector('img');
-                        const isGood = img && img.complete && img.naturalWidth > 0;
-                        if (!isGood || item.style.display === 'none') {
-                            item.remove();
-                        }
-                    });
-                    const remaining = slide.querySelectorAll('.gallery-item').length;
-                    if (remaining === 0) {
-                        slide.remove();
-                    }
-                });
-                // Finally, rebuild the gallery densely from valid images to eliminate any middle gaps
-                rebuildGalleryFromValidImages();
-            }, 800);
         });
     </script>
 

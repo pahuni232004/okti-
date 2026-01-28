@@ -8,29 +8,30 @@
 @media (max-width: 900px) {
     .header .burger,
     .burger {
-        display: flex;
-        position: absolute;
-        right: 15px;
-        top: 50%;
-        transform: translateY(-50%);
-        z-index: 1002;
-        width: 40px;
-        height: 40px;
-        background: none;
-        border: none;
-        cursor: pointer;
+        display: flex !important;
+        position: absolute !important;
+        right: 15px !important;
+        top: 50% !important;
+        transform: translateY(-50%) !important;
+        z-index: 9999 !important;
+        width: 44px;
+        height: 44px;
+        background: transparent !important;
+        border: none !important;
+        cursor: pointer !important;
         flex-direction: column;
         justify-content: center;
         align-items: center;
         padding: 8px;
+        pointer-events: auto !important;
     }
     
     .header .burger .line,
     .burger .line {
-        display: block;
+        display: block !important;
         width: 28px;
         height: 4px;
-        background: #000000;
+        background: #000000 !important;
         margin: 3px 0;
         border-radius: 2px;
         transition: all 0.3s ease;
@@ -39,7 +40,16 @@
     
     .header .nav,
     .nav { 
-        z-index: 999; 
+        z-index: 9998; 
+    }
+    
+    /* Ensure nav doesn't block burger when closed */
+    .nav:not(.open) {
+        pointer-events: none;
+    }
+    
+    .nav.open {
+        pointer-events: auto;
     }
 }
 
@@ -217,18 +227,22 @@ input[type="text"], input[type="email"], input[type="tel"], input[type="number"]
 
 /* Burger menu button */
 .burger {
-    display: none; /* Hidden by default, shown on mobile */
-    width: 40px;
-    height: 40px;
-    background: none;
+    display: none; /* Hidden by default on desktop, shown on mobile via media query */
+    width: 44px;
+    height: 44px;
+    background: transparent;
     border: none;
     padding: 8px;
     cursor: pointer;
-    z-index: 1001;
-    position: relative;
+    z-index: 9999;
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    pointer-events: auto;
 }
 .burger .line {
     display: block;
@@ -588,6 +602,32 @@ body.nav-open { overflow: hidden; }
     font-size: 1rem;
     color: #7f8c8d;
     line-height: 1.6;
+}
+
+/* Inline links for focus cards */
+.inline-link {
+    color: #DC2718;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+
+.inline-link:hover {
+    color: #b91c14;
+    text-decoration: underline;
+}
+
+/* Inline links for dark backgrounds */
+.inline-link-light {
+    color: #60a5fa;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+
+.inline-link-light:hover {
+    color: #93c5fd;
+    text-decoration: underline;
 }
 
 .focus-image {
@@ -1248,12 +1288,13 @@ body.nav-open { overflow: hidden; }
 }
 
 .other-founders {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 30px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 40px;
     width: 100%;
-    max-width: 600px;
-    margin-top: 20px;
+    max-width: 800px;
+    margin-top: 30px;
 }
 
 .founder-card {
@@ -1273,7 +1314,7 @@ body.nav-open { overflow: hidden; }
 
 .founder-img {
     width: 280px;
-    height: 280px;
+    height: 350px;
     border-radius: 10px;
     object-fit: cover;
     object-position: center top;
@@ -2219,6 +2260,117 @@ body.nav-open { overflow: hidden; }
     }
 }
 
+/* Image Lightbox Styles */
+.image-lightbox {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.95);
+    z-index: 10000;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.image-lightbox.active {
+    display: flex;
+    opacity: 1;
+}
+
+.lightbox-image {
+    max-width: 90%;
+    max-height: 90vh;
+    object-fit: contain;
+    border-radius: 8px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+    animation: lightboxZoomIn 0.3s ease;
+}
+
+@keyframes lightboxZoomIn {
+    from {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.lightbox-close {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    font-size: 40px;
+    color: white;
+    cursor: pointer;
+    transition: transform 0.3s ease, color 0.3s ease;
+    z-index: 10001;
+}
+
+.lightbox-close:hover {
+    color: #DC2718;
+    transform: rotate(90deg);
+}
+
+.lightbox-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 24px;
+    color: white;
+    cursor: pointer;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    transition: all 0.3s ease;
+    z-index: 10001;
+}
+
+.lightbox-nav:hover {
+    background: rgba(220, 39, 24, 0.8);
+    transform: translateY(-50%) scale(1.1);
+}
+
+.lightbox-prev {
+    left: 20px;
+}
+
+.lightbox-next {
+    right: 20px;
+}
+
+/* Lightbox Mobile Styles */
+@media (max-width: 768px) {
+    .lightbox-close {
+        top: 15px;
+        right: 15px;
+        font-size: 30px;
+    }
+    
+    .lightbox-nav {
+        font-size: 18px;
+        padding: 15px;
+    }
+    
+    .lightbox-prev {
+        left: 10px;
+    }
+    
+    .lightbox-next {
+        right: 10px;
+    }
+    
+    .lightbox-image {
+        max-width: 95%;
+        max-height: 80vh;
+    }
+}
+
 /* Education Program Section */
 .education-program {
     padding: 100px 0;
@@ -2311,28 +2463,29 @@ body.nav-open { overflow: hidden; }
         transition: transform 0.3s ease;
     }
     .burger { 
-        display: flex; 
+        display: flex !important; 
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        position: absolute; 
-        right: 15px;
-        top: 50%;
-        transform: translateY(-50%);
-        width: 40px; 
-        height: 40px; 
-        z-index: 1002; 
-        background: none; 
-        border: none; 
-        cursor: pointer;
+        position: absolute !important; 
+        right: 15px !important;
+        top: 50% !important;
+        transform: translateY(-50%) !important;
+        width: 44px; 
+        height: 44px; 
+        z-index: 9999 !important; 
+        background: transparent !important; 
+        border: none !important; 
+        cursor: pointer !important;
         padding: 8px;
+        pointer-events: auto !important;
     }
     /* Burger menu lines */
     .burger .line {
-        display: block;
+        display: block !important;
         width: 28px;
         height: 4px;
-        background: #000000;
+        background: #000000 !important;
         border-radius: 2px;
         transition: all 0.3s ease;
         transform-origin: center;
@@ -2373,15 +2526,17 @@ body.nav-open { overflow: hidden; }
         color: #111827;
         transform: translateY(-100%);
         transition: transform 0.35s ease;
-        z-index: 999;
+        z-index: 9998;
         display: flex;
         align-items: center;
         justify-content: center;
         will-change: transform;
         overflow-x: hidden;
+        pointer-events: none;
     }
     .nav.open { 
-        transform: translateY(0); 
+        transform: translateY(0);
+        pointer-events: auto;
     }
     .nav-list {
         flex-direction: column;
@@ -4542,11 +4697,13 @@ body.nav-open { overflow: hidden; }
     }
     
     .founder-img {
-        width: 280px;
-        height: 280px;
+        width: 260px;
+        height: 320px;
         margin: 0;
         padding: 0;
         border-radius: 10px;
+        object-fit: cover;
+        object-position: center top;
     }
     
     .founder-name {
@@ -5230,6 +5387,15 @@ body.nav-open { overflow: hidden; }
     font-size: 1rem;
     color: #7f8c8d;
     line-height: 1.6;
+}
+
+.donation-note {
+    font-size: 0.9rem;
+    color: #DC2718;
+    font-style: italic;
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px dashed #e0e0e0;
 }
 
 /* Smaller donation cards on tablets */
@@ -6458,7 +6624,7 @@ body.nav-open { overflow: hidden; }
 /* Founder images and cards - clean styling */
 .founder-img {
     width: 280px;
-    height: 280px;
+    height: 350px;
     margin: 0;
     padding: 0;
     border-radius: 10px;
