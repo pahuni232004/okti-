@@ -381,7 +381,7 @@ body.nav-open { overflow: hidden; }
     width: 100%;
     height: 100%;
     object-fit: cover;
-	object-position: center 25%;
+	object-position: center 35%;
 }
 
 .hero-overlay {
@@ -1317,7 +1317,7 @@ body.nav-open { overflow: hidden; }
     height: 350px;
     border-radius: 10px;
     object-fit: cover;
-    object-position: center top;
+    object-position: center 35%;
     margin: 0;
     padding: 0;
 }
@@ -4703,7 +4703,7 @@ body.nav-open { overflow: hidden; }
         padding: 0;
         border-radius: 10px;
         object-fit: cover;
-        object-position: center top;
+        object-position: center 35%;
     }
     
     .founder-name {
@@ -6629,7 +6629,7 @@ body.nav-open { overflow: hidden; }
     padding: 0;
     border-radius: 10px;
     object-fit: cover;
-    object-position: center top;
+    object-position: center 35%;
 }
 
 .founder-card {
